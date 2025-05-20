@@ -2,7 +2,7 @@
 stty -echo raw
 clear
 stty echo cooked
-echo "completing..."
+echo "Compiling..."
 stty -echo raw
 g++ .code/main.cpp -Wall -o main.run -O2 > /dev/null 2>&1
 if [ $? -ne 0 ];then
