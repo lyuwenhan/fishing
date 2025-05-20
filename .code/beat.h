@@ -130,7 +130,7 @@ namespace beat{
 		}
 		print(s);
 		char c;
-		while(m1.find(c = getch()) == m1.end() || m1[c] >= choose.size());
+		while(m1.find(c = getch()) == m1.end() || m1[c] >= (int)choose.size());
 		if(!cnext[m1[c]].empty()){
 			clear();
 			printa(cnext[m1[c]]);

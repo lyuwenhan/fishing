@@ -4,7 +4,6 @@
 using std::string;
 using std::to_string;
 namespace variate{
-	bool use_tool = false;
 	long long money = 20;
 	int level = 0;
 	const int max_level = 25;

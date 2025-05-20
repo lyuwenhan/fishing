@@ -2,7 +2,7 @@
 stty -echo raw
 clear
 echo -e "loading...\r"
-./.run/fishing_main.run $*
+./main.run
 if ! [ $? -eq 0 ];then
     clear
     stty echo cooked

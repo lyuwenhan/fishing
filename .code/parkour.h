@@ -151,7 +151,7 @@ namespace parkour{
 				show();
 				char c;
 				bool u = false, di = false;
-				while(c = getch2()){
+				while((c = getch2())){
 					if(c == 127){
 						return;
 					}
@@ -268,7 +268,7 @@ namespace parkour{
 				swcnt %= 5;
 				char c;
 				bool u = false, d = false, l = false, r = false, di = false;
-				while(c = getch2()){
+				while((c = getch2())){
 					if(c == 127){
 						return;
 					}

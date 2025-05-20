@@ -8,13 +8,17 @@ using std::to_string;
 #include"function.h"
 namespace spin{
 	void spin(){
-		print("1.转盘, 2.退出");
-		print("转盘消耗: 100累积钓鱼数量+1000金币 当前钓鱼数量: " + to_string(variate::cnt) + " 当前金币数量: " + to_string(variate::money));
-		print("愚人节彩蛋: 20%");
-		print("大鱼诱饵: 20%");
-		print("钻石鱼: 1%");
 		while(true){
+			clear();
+			print("1.转盘, 2.退出");
+			print("转盘消耗: 100累积钓鱼数量+1000金币 当前钓鱼数量: " + to_string(variate::cnt) + " 当前金币数量: " + to_string(variate::money));
+			print("愚人节彩蛋: 20%");
+			print("大鱼诱饵: 20%");
+			print("钻石鱼: 1%");
 			char c = getch();
+			while(c != '1' && c != '2'){
+				c = getch();
+			}
 			if(c == '1'){
 				if(variate::cnt < 100 && variate::money < 1000){
 					print("获得成就: 江湖骗子");
@@ -46,12 +50,7 @@ namespace spin{
 					print("谢谢惠顾");
 				}
 				sleept(1);
-				clear();
-				print("1.转盘, 2.退出");
-				print("转盘消耗: 100累积钓鱼数量+1000金币 当前金币数量: " + to_string(variate::cnt) + " 当前金币数量: " + to_string(variate::money));
-				print("愚人节彩蛋: 20%");
-				print("大鱼诱饵: 20%");
-				print("钻石鱼: 1%");
+				break;
 			}else if(c == '2'){
 				return;
 			}

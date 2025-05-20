@@ -795,7 +795,7 @@ namespace fishing{
 				variate::fish[d][0] -= a;
 				variate::fish[d][1] += a;
 				clear();
-				int all = a, time = (a + variate::roast - 1) / variate::roast;
+				int time = (a + variate::roast - 1) / variate::roast;
 				for(int i = 0; i < time; i++){
 					for(int j = 0; j < 20; j++){
 						clear();
@@ -1057,12 +1057,12 @@ namespace fishing{
 					}
 					variate::aqfish_cnt[i] = 0;
 				}
-				checkpoint::savechpnp(variate::name, false);
+				checkpoint::savechpnp(variate::name);
 				while(getch() == '1'){
 					variate::money -= 1000;
 				}
 			}
-			print("1.开始钓鱼, 2.清理鱼池, 3.全部卖出, 4.全部卖出并退出, 5.购买钓竿, 6.查看水族馆, 7.制作食物");
+			print("1.开始钓鱼, 2.清理鱼池, 3.购买钓竿, 4.查看水族馆, 5.制作食物, 6.全部卖出, 7.全部卖出并退出");
 			printnl("当前饱食度: ");
 			cout << (variate::hungry < 10 ? "\033[31;1m" : (variate::hungry < 30 ? "" : variate::hungry < 35 ? "\033[32m" : "\033[32;1m")) << variate::hungry << "\033[m" << endl;
 			print("当前鱼竿: " + fish_name[variate::gan] + "鱼竿");
@@ -1167,6 +1167,22 @@ namespace fishing{
 					}
 					break;
 				}else if(c == '3'){
+					get_gan();
+					sleept(1);
+					break;
+				}else if(c == '4'){
+					if(variate::aqcnt){
+						aqua();
+						sleept(1);
+					}else{
+						print("请在购买水族馆后在来查看");
+						sleept(0.5);
+					}
+					break;
+				}else if(c == '5'){
+					roast();
+					break;
+				}else if(c == '6'){
 					for(int i = 0; i <= 6; i++){
 						for(int j = 0; j < fish[i].size(); j++){
 							variate::money += (int)(gr() * (1 - 0.02 * dirty) * fresh(fish[i][j]));
@@ -1177,7 +1193,7 @@ namespace fishing{
 					}
 					clear();
 					break;
-				}else if(c == '4'){
+				}else if(c == '7'){
 					for(int i = 0; i <= 6; i++){
 						for(int j = 0; j < fish[i].size(); j++){
 							variate::money += (int)(gr() * (1 - 0.02 * dirty) * fresh(fish[i][j]));
@@ -1187,22 +1203,6 @@ namespace fishing{
 						}
 					}
 					return;
-				}else if(c == '5'){
-					get_gan();
-					sleept(1);
-					break;
-				}else if(c == '6'){
-					if(variate::aqcnt){
-						aqua();
-						sleept(1);
-					}else{
-						print("请在购买水族馆后在来查看");
-						sleept(0.5);
-					}
-					break;
-				}else if(c == '7'){
-					roast();
-					break;
 				}
 			}
 			sleept(1);

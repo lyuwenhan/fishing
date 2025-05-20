@@ -16,28 +16,6 @@ using std::string;
 using std::ostream;
 using std::to_string;
 #include"variate.h"
-void disableEcho(){
-	struct termios tty;
-	tcgetattr(STDIN_FILENO, &tty); // 获取当前终端设置
-
-	// 恢复标准模式和回显
-	tty.c_lflag |= ICANON | ECHO;
-
-	tcsetattr(STDIN_FILENO, TCSANOW, &tty); // 立即应用设置
-}
-void enableEcho(){
-	struct termios tty;
-	tcgetattr(STDIN_FILENO, &tty); // 获取当前终端设置
-
-	// 禁用标准模式（ICANON），禁用回显（ECHO）
-	tty.c_lflag &= ~(ICANON | ECHO);
-
-	// 设置最小输入字符数和超时时间，确保可以逐字符读取输入
-	tty.c_cc[VMIN] = 1;  // 读取至少1个字符
-	tty.c_cc[VTIME] = 0; // 无超时等待
-
-	tcsetattr(STDIN_FILENO, TCSANOW, &tty); // 立即应用设置
-}
 pair<int, int> getConsoleSize(){
     struct winsize ws;
     if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == 0){
@@ -141,9 +119,6 @@ inline string getline(string &ans, bool b = false){
 inline unsigned long long to_hash(string s){
 	return static_cast<unsigned long long>(hash<string>{}(s));
 }
-// inline void sleept(double time){
-// 	system(((string)"sleep " + to_string(time)).c_str());
-// }
 inline void sleept(double time){
 	while(getch2());
 	while(time > 0.1){
