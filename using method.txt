@@ -1,0 +1,10 @@
+关于使用：
+使用前先 chmod u+x *.sh 添加运行权限(只需执行一次)
+然后通过./setup.sh启动
+
+Fishing. Usage:
+./setup.sh [-chp name] [-speed speed]
+  The default action is to choose your username and speed
+  can include the special name - to compress standard input.
+  -chp   change your username when you open
+  -speed change the output speed  -h     to show this help page
