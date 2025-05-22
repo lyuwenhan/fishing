@@ -113,7 +113,7 @@ namespace checkpoint{
 		inline bool decode(string code, bool ec, bool us){
 			if(decode1(code, us)){
 				if(ec){
-					cout << "读取成功" << endl; 
+					cout << "读取成功" << endl;
 				}
 				return true;
 			}else{
@@ -195,10 +195,13 @@ namespace checkpoint{
 		string name;
 		while(true){
 			clear();
-			print("1.登录, 2.注册");
+			print("1.登录, 2.注册, 3.退出");
 			char c = getch();
-			while(c != '1' && c != '2'){
+			while(c != '1' && c != '2' && c != '3'){
 				c = getch();
+			}
+			if(c == 3){
+				exit(0);
 			}
 			if(c == '1' ? login() : regi()){
 				return c == '1';
