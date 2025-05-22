@@ -38,38 +38,38 @@ int main(){
 		char type = getch();
 		while(!islower(type) && !isupper(type) && !isdigit(type) && !issymbol(type) && type != 127){
 			type = getch();
-		}
-		if(type == '1'){
-			fishing::fishing_setup();
-			break;
-		}else if(type == '2'){
-			clear();
-			shop::shop();
-			break;
-		}else if(type == '3'){
-			clear();
-			setting::setting();
-			break;
-		}else if(type == '4'){
-			clear();
-			spin::spin();
-			break;
-		}else if(type == '5'){
-			clear();
-			if(variate::try_level == 0){
-				parkour::main();
-			}else if(variate::try_level == 1){
-				beat::main();
-			}else{
-				printa("已完成挑战");
+			if(type == '1'){
+				fishing::fishing_setup();
+				break;
+			}else if(type == '2'){
+				clear();
+				shop::shop();
+				break;
+			}else if(type == '3'){
+				clear();
+				setting::setting();
+				break;
+			}else if(type == '4'){
+				clear();
+				spin::spin();
+				break;
+			}else if(type == '5'){
+				clear();
+				if(variate::try_level == 0){
+					parkour::main();
+				}else if(variate::try_level == 1){
+					beat::main();
+				}else{
+					printa("已完成挑战");
+				}
+				break;
+			}else if(type == '6'){
+				clear();
+				return 0;
+			}else if(type == 127){
+				tool::tool();
+				break;
 			}
-			break;
-		}else if(type == '6'){
-			clear();
-			return 0;
-		}else if(type == 127){
-			tool::tool();
-			break;
 		}
 		checkpoint::savechpnp(variate::name);
 		sleept(0.5);

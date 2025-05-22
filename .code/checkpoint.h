@@ -193,8 +193,8 @@ namespace checkpoint{
 	}
 	inline bool chp(){
 		string name;
-		clear();
 		while(true){
+			clear();
 			print("1.登录, 2.注册");
 			char c = getch();
 			while(c != '1' && c != '2'){
