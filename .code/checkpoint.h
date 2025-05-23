@@ -182,7 +182,7 @@ namespace checkpoint{
 		}
 		variate::name = name;
 		clear();
-		if(ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, "nopwd"), false, false)){
+		if(ifstream((string)"checkpoint/" + name).good()){
 			print("用户已存在");
 			sleept(1);
 			return false;
