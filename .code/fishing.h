@@ -75,8 +75,10 @@ namespace fishing{
 	const char fu[6] = {'.', '*', ' ', ' ', ' ', ' '};
 	const string fucolor[6] = {"\033[1;34m", "\033[1;36m", "", "", "", ""};
 	pair<int, int> weather = {-1, 0};
+	int lw = 0;
 	vector<pair<int, int>> weapoint;
 	char paint[15][45] = {};
+	char last[15][45] = {};
 	string color[15][45];
 	vector<int> fish[7];
 	int dirty = 0;
@@ -182,15 +184,20 @@ namespace fishing{
 		variate::cnt++;
 	}
 	inline void draw(){
-		if(time(0) - la > 10){
+		bool wcg = false;
+		const now = time(0);
+		while(now - la > 10){
 			auto nweather = change(weather);
-			while(weapoint.size() > macnt[weather.second]){
-				weapoint.pop_back();
+			if(nweather != weather){
+				wcg = true;
 			}
 			weather = nweather;
-			la = time(0);
+			if(weather <= 1){
+				lw = weather.first;
+			}
+			la += 10;
 		}
-		if(la2 > 0.2){
+		while(la2 > 0.2){
 			la2 -= 0.2;
 			for(int i = 0; i < weapoint.size();i++){
 				weapoint[i].first += 1;
@@ -243,6 +250,11 @@ namespace fishing{
 			ter_big = nowsize;
 			cout << "\033c\033[?25l" << flush;
 		}else{
+			bool isEqual = (std::memcmp(paint, last, sizeof(paint)) == 0);
+			if(!std::memcmp(paint, last, sizeof(paint))){
+				return;
+			}
+			std::memcpy(last, paint, sizeof(paint));
 			cout << "\033[H" << flush;
 		}
 		if(weather.first == 3 || weather.first == 4 || weather.first == 2){
@@ -261,7 +273,7 @@ namespace fishing{
 					}
 				}
 				if(paint[i][j] == ' ' && b){
-					cout << "\033[m" << fucolor[weather.first] << fu[weather.first];
+					cout << "\033[m" << fucolor[lw] << fu[lw];
 				}else{
 					cout << "\033[m" << color[i][j] << paint[i][j];
 				}				
@@ -305,7 +317,6 @@ namespace fishing{
 			color[i][19] = fish_color[type];
 			paint[i + 1][19] = '^';
 			paint[i][19] = 'O';
-			draw();
 			slep(0.5 * hung_speed * (is_big + 1) / variate::stime);
 		}
 		paint[9][24] = paint[8][24] = paint[7][24] = paint[6][24] = '|';
@@ -353,7 +364,6 @@ namespace fishing{
 			paint[i - 1][35] = 'V';
 			color[i][35] = fish_color[type];
 			color[i - 2][35] = "";
-			draw();
 			slep(0.5 * (is_big + 1) / variate::stime);
 		}
 		paint[11][34] = paint[11][35] = paint[11][36] = '~';
@@ -374,7 +384,6 @@ namespace fishing{
 			paint[13][i - 1] = '>';
 			color[13][i] = fish_color[type];
 			color[13][i - 2] = "";
-			draw();
 			slep(0.5 * (is_big + 1) / variate::stime);
 		}
 		paint[13][38] = paint[13][37] = ' ';
@@ -444,7 +453,6 @@ namespace fishing{
 			paint[i - 2][19] = ' ';
 			paint[i - 1][19] = 'V';
 			paint[i][19] = 'O';
-			draw();
 			slep(0.5 / (is_big + 1) / variate::stime);
 		}
 		paint[11][18] = paint[11][20] = paint[11][19] = '~';
@@ -471,7 +479,9 @@ namespace fishing{
 		cout << "\033[?25h" << flush;
 	}
 	inline void front_fishing(bool is_big, int type){
+		std::memset(last, 0, sizeof(last));
 		ter_big = {0, 0};
+		
 		const double hung_speed = (variate::hungry < 5 ? 3 : (variate::hungry < 10 ? 2 : (variate::hungry < 30 ? 1 : variate::hungry < 35 ? 0.8 : 0.5)));
 		cout << "\033[?25l" << flush;
 		for(int i = 0; i < 15; i++){
@@ -515,13 +525,11 @@ namespace fishing{
 		for(int i = 6; i <= 10; i++){
 			paint[i - 1][19] = '|';
 			paint[i][19] = 'j';
-			draw();
 			slep(0.5 * hung_speed / variate::stime);
 		}
 		paint[10][19] = '|';
 		paint[11][19] = 'j';
 		color[11][19] = "";
-		draw();
 		int stime = rand_time();
 		if(weather.first == 0){
 			stime = max(0, stime - 5 * weather.second);
@@ -543,7 +551,6 @@ namespace fishing{
 			color[11][i] = fish_color[type];
 			paint[11][i - 1] = '>';
 			paint[11][i] = 'O';
-			draw();
 			slep(0.5 * (is_big + 1) / variate::stime);
 		}
 		cout << "\033[?25h" << flush;
@@ -552,6 +559,9 @@ namespace fishing{
 			fishingslip(is_big, type);
 		}else{
 			fishing(is_big, type);
+		}
+		while(!weapoint.empty()){
+			weapoint.pop_back();
 		}
 	}
 	inline void fishing_choose(){
