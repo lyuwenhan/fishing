@@ -201,6 +201,7 @@ namespace fishing{
 			la2 -= 0.2;
 			for(int i = 0; i < weapoint.size();i++){
 				weapoint[i].first += 1;
+				wcg = true;
 			}
 			for(int i = 0; i < weapoint.size();i++){
 				if(weapoint[i].first > 10){
@@ -209,6 +210,7 @@ namespace fishing{
 				}
 			}
 			if(weapoint.size() < macnt[weather.second] && random(1, 2) <= 2){
+				wcg = true;
 				weapoint.push_back({0, random(0, 44)});
 			}
 		}
