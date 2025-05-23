@@ -13,5 +13,5 @@ if [ $? -ne 0 ];then
 	read
 	exit 1
 fi
-echo "Compilation successful"
 stty echo cooked
+echo "Compilation successful"
