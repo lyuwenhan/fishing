@@ -35,9 +35,8 @@ int main(){
 	while(true){
 		clear();
 		print("1.开始钓鱼, 2.进入商店, 3.设置, 4.抽奖, 5.挑战, 6.退出, 其他输入无效。");
-		char type = getch();
-		while(!islower(type) && !isupper(type) && !isdigit(type) && !issymbol(type) && type != 127){
-			type = getch();
+		while(true){
+			char type = getch();
 			if(type == '1'){
 				fishing::fishing_setup();
 				break;
