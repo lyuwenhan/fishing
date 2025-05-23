@@ -39,7 +39,7 @@ inline void clear(){
 	cout << "\033c" << flush;
 }
 ostream& endl(ostream& out) {
-	return out << "\n\r" << flush;
+	return out << "\r\n" << flush;
 }
 inline char getch(){
 	char c = getchar();
