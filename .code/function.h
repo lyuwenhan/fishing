@@ -8,6 +8,7 @@
 #include<fcntl.h>
 #include<unistd.h>
 #include<termios.h>
+#include"utf8/checked.h"
 using std::cin;
 using std::cout;
 using std::hash;
@@ -139,25 +140,20 @@ inline void printnl(string s, double time = 0.02){
 	if(variate::speed == 1000){
 		cout << s;
 	}else{
-		for(char i : s){
-			sleept(time / variate::speed);
-			cout << i << flush;
-		}
+        auto it = s.begin();
+        while (it != s.end()) {
+            auto p = it;
+            utf8::next(it, s.end());
+            string ch(p, it);
+            cout << ch << flush;
+            sleept(time * ch.length() / variate::speed);
+        }
 	}
 	cout << "\033[m\033[?25h" << flush;
 }
 inline void print(string s, double time = 0.02){
-	cout << "\033[?25l" << flush;
-	if(variate::speed == 1000){
-		cout << s << endl;
-	}else{
-		for(char i : s){
-			sleept(time / variate::speed);
-			cout << i << flush;
-		}
-		cout << endl;
-	}
-	cout << "\033[m\033[?25h" << flush;
+    printnl(s, time);
+    cout << endl;
 }
 inline void printa(string s, double time = 0.02){
 	print(s + (s.empty() ? "(按enter继续)" : "    (按enter继续)"), time);
