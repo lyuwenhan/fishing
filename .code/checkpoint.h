@@ -200,7 +200,7 @@ namespace checkpoint{
 			while(c != '1' && c != '2' && c != '3'){
 				c = getch();
 			}
-			if(c == 3){
+			if(c == '3'){
 				exit(0);
 			}
 			if(c == '1' ? login() : regi()){
