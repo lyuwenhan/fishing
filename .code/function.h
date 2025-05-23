@@ -117,9 +117,6 @@ inline string getline(string &ans, bool b = false){
 	cout << endl;
 	return ans;
 }
-inline unsigned long long to_hash(string s){
-	return static_cast<unsigned long long>(hash<string>{}(s));
-}
 inline void sleept(double time){
 	while(getch2());
 	while(time > 0.1){
