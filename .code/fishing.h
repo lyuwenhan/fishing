@@ -185,14 +185,14 @@ namespace fishing{
 	}
 	inline void draw(){
 		bool wcg = false;
-		const now = time(0);
+		const int now = time(0);
 		while(now - la > 10){
 			auto nweather = change(weather);
 			if(nweather != weather){
 				wcg = true;
 			}
 			weather = nweather;
-			if(weather <= 1){
+			if(weather.first <= 1){
 				lw = weather.first;
 			}
 			la += 10;
