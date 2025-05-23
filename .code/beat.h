@@ -189,8 +189,7 @@ namespace beat{
 				variate::money += 100;
 			}
 			if(eatcnt == 30){
-				print("获得彩蛋: ");
-				print("贤哉, 回也! 一吨食, 一瓢饮, 在陋巷, 人不堪其忧, 回也不改其乐. 贤哉, 回也! ");
+				printa("获得彩蛋: 贤哉, 回也! 一吨食, 一瓢饮, 在陋巷, 人不堪其忧, 回也不改其乐. 贤哉, 回也! ");
 				variate::money += 100;
 			}
 			now = 1;
