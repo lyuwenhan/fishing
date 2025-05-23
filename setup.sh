@@ -1,4 +1,5 @@
 #!/bin/bash
+cd "$(dirname "$0")"
 stty -echo raw
 clear
 echo -e "loading...\r"
