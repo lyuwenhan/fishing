@@ -252,8 +252,7 @@ namespace fishing{
 			ter_big = nowsize;
 			cout << "\033c\033[?25l" << flush;
 		}else{
-			bool isEqual = (std::memcmp(paint, last, sizeof(paint)) == 0);
-			if(!std::memcmp(paint, last, sizeof(paint))){
+			if(!wcg && !std::memcmp(paint, last, sizeof(paint))){
 				return;
 			}
 			std::memcpy(last, paint, sizeof(paint));
