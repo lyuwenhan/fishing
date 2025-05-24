@@ -195,6 +195,9 @@ namespace fishing{
 			if(weather.first <= 1){
 				lw = weather.first;
 			}
+			if(now - la > 100){
+				la = now - 100;
+			}
 			la += 10;
 		}
 		while(la2 > 0.2){
@@ -482,6 +485,7 @@ namespace fishing{
 	inline void front_fishing(bool is_big, int type){
 		std::memset(last, 0, sizeof(last));
 		ter_big = {0, 0};
+		la = time(0) - 10;
 		
 		const double hung_speed = (variate::hungry < 5 ? 3 : (variate::hungry < 10 ? 2 : (variate::hungry < 30 ? 1 : variate::hungry < 35 ? 0.8 : 0.5)));
 		cout << "\033[?25l" << flush;
