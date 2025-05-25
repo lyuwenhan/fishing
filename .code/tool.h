@@ -18,7 +18,7 @@ namespace tool{
 			const int l = 0, r = 6;
 			int a = variate::gan;
 			while(true){
-
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << fishing::fish_name[a] << "钓竿" << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -118,6 +118,7 @@ namespace tool{
 			const int l = 0, r = 30;
 			int a = variate::aqcnt;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -172,6 +173,7 @@ namespace tool{
 				a = 1000000;
 			}
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -221,6 +223,7 @@ namespace tool{
 			const int l = 0, r = variate::aqcnt;
 			int a = variate::aqfish_cnt[0];
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -256,6 +259,7 @@ namespace tool{
 			const int l = 0, r = variate::aqcnt;
 			int a = variate::aqfish_cnt[1];
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -291,6 +295,7 @@ namespace tool{
 			const int l = 0, r = variate::aqcnt;
 			int a = variate::aqfish_cnt[2];
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -326,6 +331,7 @@ namespace tool{
 			const int l = 0, r = variate::aqcnt;
 			int a = variate::aqfish_cnt[3];
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -361,6 +367,7 @@ namespace tool{
 			const int l = 0, r = variate::aqcnt;
 			int a = variate::aqfish_cnt[4];
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -396,6 +403,7 @@ namespace tool{
 			const int l = 0, r = variate::aqcnt;
 			int a = variate::aqfish_cnt[5];
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -431,6 +439,7 @@ namespace tool{
 			const int l = 0, r = variate::aqcnt;
 			int a = variate::aqfish_cnt[6];
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -466,6 +475,7 @@ namespace tool{
 			const int l = 0, r = variate::max_level;
 			int a = variate::level;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << variate::mintime[a] << " ~ " << variate::maxtime[a] << "s" << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -496,6 +506,7 @@ namespace tool{
 			const int l = 0, r = variate::max_level2;
 			int a = variate::get_level;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << variate::minget[a] << " ~ " << variate::maxget[a] << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -526,6 +537,7 @@ namespace tool{
 			const int l = 90, r = 0;
 			int a = variate::slip;
 			while(true){
+				clear();
 				cout << "按 a 增加, d 减少, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -563,6 +575,7 @@ namespace tool{
 			const int l = 0, r = 100;
 			int a = variate::cleaning_ball;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -593,6 +606,7 @@ namespace tool{
 			const int l = 1, r = 10;
 			int a = variate::cleaning_sub;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -623,6 +637,7 @@ namespace tool{
 			const int l = 1, r = 10;
 			int a = variate::stime;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -653,6 +668,7 @@ namespace tool{
 			const int l = 0, r = 100;
 			int a = variate::bf;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -682,6 +698,7 @@ namespace tool{
 		}else if(s == "愚人节彩蛋 (抽奖)"){
 			bool a = variate::fish_man;
 			while(true){
+				clear();
 				cout << "按 空格 切换, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a ? "有" : "无") << endl;
 				while(true){
@@ -703,6 +720,7 @@ namespace tool{
 			const int l = 0, r = 100;
 			int a = variate::big;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -733,6 +751,7 @@ namespace tool{
 			const int l = 0, r = 100;
 			int a = variate::diamond;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
@@ -763,6 +782,7 @@ namespace tool{
 			const int l = 0, r = 40;
 			int a = variate::hungry;
 			while(true){
+				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
 				cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 				while(true){
