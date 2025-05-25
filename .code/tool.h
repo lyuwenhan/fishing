@@ -854,7 +854,6 @@ namespace tool{
 			}
 		}
 		clear();
-		sleept(10);
 		vector<type1> li = {	
 			(type1){
 				"金币数量", 
