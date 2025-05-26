@@ -10,7 +10,6 @@ if [ $? -ne 0 ];then
 	echo "编译错误，正在显示编译结果"
 	g++ .code/main.cpp -o main.run
 	echo "(按enter退出)"
-	read
 	exit 1
 fi
 stty echo cooked
