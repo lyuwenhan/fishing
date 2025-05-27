@@ -83,6 +83,55 @@ namespace checkpoint{
 					str >> fi[j][i];
 				}
 			}
+			string s_2;
+			s_2 += to_string(coin);
+			s_2 += " ";
+			s_2 += to_string(lv);
+			s_2 += " ";
+			s_2 += to_string(lv2);
+			s_2 += " ";
+			s_2 += to_string(c);
+			s_2 += " ";
+			s_2 += to_string(bf);
+			s_2 += " ";
+			s_2 += to_string(st);
+			s_2 += " ";
+			s_2 += to_string(sl);
+			s_2 += " ";
+			s_2 += to_string(clean);
+			s_2 += " ";
+			s_2 += to_string(gan);
+			s_2 += " ";
+			s_2 += to_string(aqc);
+			for(int i = 0; i <= 6; i++){
+				s_2 += " ";
+				s_2 += to_string(aqs[i]);
+			}
+			s_2 += " ";
+			s_2 += to_string(ty);
+			s_2 += " ";
+			s_2 += to_string(clesb);
+			s_2 += " ";
+			s_2 += to_string(sp);
+			s_2 += " ";
+			s_2 += to_string(ro);
+			s_2 += " ";
+			s_2 += to_string(hung);
+			for(int i = 0; i <= 2; i++){
+				for(int j = 0; j < 7; j++){
+					s_2 += " ";
+					s_2 += to_string(fi[j][i]);
+				}
+			}
+			if(s_2 != s){
+				return false;
+			}
+			if(sp > 3){
+				sp = 3;
+			}
+			if(sp < 1){
+				sp = 1;
+			}
 			if(us){
 				variate::money = coin;
 				variate::level = lv;
@@ -129,7 +178,7 @@ namespace checkpoint{
 	}
 	using decode_code::decode;
 	inline void savechpnp(string name){
-		saving::encryptFile("checkpoint/" + name, "nopwd", de());
+		saving::encryptFile("checkpoint/" + name, variate::pwd, de());
 	}
 	inline bool login(){
 		string name, pwd;
@@ -146,10 +195,11 @@ namespace checkpoint{
 		printnl(chp_pwd);
 		getline(pwd);
 		variate::name = name;
+		variate::pwd = pwd;
 		clear();
-		if(ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, "nopwd"), false)){
+		if(ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, variate::pwd), false)){
 			sleept(1);
-			return decode(saving::decryptFile("checkpoint/" + name, "nopwd"));
+			return decode(saving::decryptFile("checkpoint/" + name, variate::pwd));
 		}else{
 			print(chp_nouser);
 			sleept(1);
@@ -178,6 +228,7 @@ namespace checkpoint{
 			return false;
 		}
 		variate::name = name;
+		variate::pwd = pwd;
 		clear();
 		if(ifstream((string)"checkpoint/" + name).good()){
 			print(chp_yesuser);

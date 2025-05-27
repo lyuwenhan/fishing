@@ -1,9 +1,7 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 stty -echo raw
-stty echo cooked
-echo "Compiling..."
-stty echo cooked
+echo -e "Compiling...\r"
 err=""
 
 build_en=false
@@ -39,6 +37,7 @@ if $build_en ; then
     fi
 fi
 
+stty echo cooked
 if [[ $zh_suc -ne 0 || $en_suc -ne 0 ]];then
 	echo "$err"
 	exit 1

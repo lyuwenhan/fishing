@@ -40,5 +40,6 @@ namespace variate{
 	int fish[7][2] = {};
 	int roast = 0;
 	int hungry = 20;
+	string pwd;
 }
 #endif

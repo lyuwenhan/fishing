@@ -7,12 +7,12 @@ using std::ostream;
 using std::to_string;
 #include"variate.h"
 #include"function.h"
-const string st_output_speed[3] = st_speed;
+const string st_output_speed[4] = st_speed;
 namespace setting{
 	void setting(){
 		clear();
 		print(st_m);
-		print(st_m2 + st_output_speed[variate::speed]);
+		print(st_m2 + st_output_speed[(variate::speed < 1 ? 1 : (variate::speed > 3 ? 3 : variate::speed))]);
 		while(true){
 			char c = getch();
 			if(c == '1'){

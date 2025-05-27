@@ -154,7 +154,7 @@ inline void sleep2(double time){
 }
 inline void printnl(string s, double time = 0.02){
 	cout << "\033[?25l" << flush;
-	if(variate::speed == 1000){
+	if(variate::speed >= 3){
 		cout << s;
 	}else{
         auto it = s.begin();

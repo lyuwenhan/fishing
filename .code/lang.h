@@ -83,7 +83,7 @@
 #define press_enter_continue "(Press Enter to continue)"
 #define fun_choose {"Please choose a starting skill", "1.Delicious Bait, 2.Rare Treasures, 3.Secure Safety Rope, 4.Powerful Cleaner, 5.Popeye the Sailor, 6.Long Line for Big Fish, 7.Poor Family", "Delicious Bait:", "    Hooking speed becomes 1.5× of the original", "Rare Treasures:", "    Fish prices become 2× of the original", "Secure Safety Rope:", "    Slip-off chance changes from 50% to 10%", "Powerful Cleaner:", "    Start with 1 cleaner, and cleaner effectiveness is doubled", "Popeye the Sailor:", "    Casting speed changes from 1× to 2×", "Long Line for Big Fish:", "    Big fish chance changes from 20% to 40%", "Poor Family:", "    None"}
 #define fi_egg "Egg Fish\033[m, worth $"
-#define st_speed {"Slow", "Normal", "Fast"}
+#define st_speed {"", "Slow", "Normal", "Fast"}
 #define st_speeds "1.Slow, 2.Normal, 3.Fast"
 #define st_m "1.Edit output speed, 2.Exit"
 #define st_m2 "Current output speed: "
@@ -93,6 +93,7 @@
 #define pk_die "You died"
 #define pk_rb "Do you want to respawn?"
 #define pk_tip2 "Use 'wasd' to swim, press 'r' to respawn, press backspace to exit"
+#define story_m {"In the year 2136, the global icebergs have melted", "Sea levels have risen significantly.", "And most cities have been submerged.", "You are staying on a small island, waiting for rescue.", "You survive day by day by fishing."}
 #else
 #define m_main "1.开始钓鱼, 2.进入商店, 3.设置, 4.抽奖, 5.挑战, 6.退出, 其他输入无效。"
 #define m_did "已完成挑战"
@@ -178,15 +179,15 @@
 #define press_enter_continue "(按enter继续)"
 #define fun_choose {"请选择开局技能", "1.美味诱饵, 2.稀世珍宝, 3.牢靠安全绳, 4.强效清洁剂, 5.大力水手, 6.放长线钓大鱼, 7.孤苦人家", "美味诱饵:", "    上钩速度变为原先的1.5倍", "稀世珍宝:", "    鱼的价格变为原先的2倍", "牢靠安全绳:", "    脱钩概率由50%变为10%", "强效清洁剂:", "    初始获得1个清洁剂, 并且清洁剂效果翻倍", "大力水手:", "    甩杆倍速由1倍变为2倍", "放长线钓大鱼:", "    大鱼概率由20%变为40%", "孤苦人家:", "    无"}
 #define fi_egg "鸡蛋鱼\033[m, 价值$"
-#define st_speed {"慢速", "普通", "急速"}
+#define st_speed {"", "慢速", "普通", "急速"}
 #define st_speeds "1.慢速, 2.普通, 3.急速"
 #define st_m "1.更改输出速度, 2.退出"
 #define st_m2 "当前输出速度: "
-
 #define pk_in "是否进入跑酷"
 #define pk_tip1 "使用w或空格进行跳跃, 按r重生, 按backspace退出"
 #define pk_ok "完成挑战, 获得 $500"
 #define pk_die "你死了"
 #define pk_rb "是否重生"
 #define pk_tip2 "使用wasd进行游泳, 按r重生, 按backspace退出"
+#define story_m {"2136年, 全球冰山融化了", "海平面上升了许多", "大部分城市被海平面淹没了", "你待在一个小岛上, 等待救援", "你每天只能钓鱼度日"}
 #endif
