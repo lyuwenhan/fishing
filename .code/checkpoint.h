@@ -249,6 +249,7 @@ namespace checkpoint{
 				c = getch();
 			}
 			if(c == '3'){
+				clear();
 				exit(0);
 			}
 			if(c == '1' ? login() : regi()){

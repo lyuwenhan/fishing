@@ -20,6 +20,7 @@ int main(){
 	clear();
 	system("mkdir -p checkpoint >/dev/null 2>&1");
 	if(!directoryExists("checkpoint")){
+		clear();
 		exit(0);
 	}
 	story();
