@@ -163,7 +163,11 @@ inline void printnl(string s, double time = 0.02){
             utf8::next(it, s.end());
             string ch(p, it);
             cout << ch << flush;
+			#ifdef EN
+            sleept(time * ch.length() / variate::speed / 2);
+			#else
             sleept(time * ch.length() / variate::speed);
+			#endif
         }
 	}
 	cout << "\033[m\033[?25h" << flush;

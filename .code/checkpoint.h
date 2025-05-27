@@ -9,6 +9,8 @@ using std::string;
 using std::ifstream;
 using std::ofstream;
 using std::stringstream;
+using std::istringstream;
+using std::ostringstream;
 using std::to_string;
 #include"variate.h"
 #include"function.h"
@@ -17,49 +19,6 @@ namespace checkpoint{
 	bool auto_save_type = false;
 	int timestamp = 0;
 	string save_name;
-	inline string de(){
-		string s;
-		s += to_string(variate::money);
-		s += " ";
-		s += to_string(variate::level);
-		s += " ";
-		s += to_string(variate::get_level);
-		s += " ";
-		s += to_string(variate::cnt);
-		s += " ";
-		s += to_string(variate::bf);
-		s += " ";
-		s += to_string(variate::stime);
-		s += " ";
-		s += to_string(variate::slip);
-		s += " ";
-		s += to_string(variate::cleaning_ball);
-		s += " ";
-		s += to_string(variate::gan);
-		s += " ";
-		s += to_string(variate::aqcnt);
-		for(int i = 0; i <= 6; i++){
-			s += " ";
-			s += to_string(variate::aqfish_cnt[i]);
-		}
-		s += " ";
-		s += to_string(variate::try_level);
-		s += " ";
-		s += to_string(variate::cleaning_sub);
-		s += " ";
-		s += to_string(variate::speed);
-		s += " ";
-		s += to_string(variate::roast);
-		s += " ";
-		s += to_string(variate::hungry);
-		for(int i = 0; i <= 2; i++){
-			for(int j = 0; j < 7; j++){
-				s += " ";
-				s += to_string(variate::fish[j][i]);
-			}
-		}
-		return s;
-	}
 	inline bool check_name(const std::string& name) {
 		for (char c : name) {
 			if (!std::isalnum(c) && c != '_' && c != '-') {
@@ -68,62 +27,48 @@ namespace checkpoint{
 		}
 		return true;
 	}
+	inline string de(){
+		ostringstream s;
+		s << to_string(variate::money) << ' ' << to_string(variate::level) << ' ' << to_string(variate::get_level) << ' ' << to_string(variate::cnt) << ' ' << to_string(variate::bf) << ' ' << to_string(variate::stime) << ' ' << to_string(variate::slip) << ' ' << to_string(variate::cleaning_ball) << ' ' << to_string(variate::cleaning_sub) << ' ' << to_string(variate::gan) << ' ' << to_string(variate::aqcnt) << ' ' << to_string(variate::try_level) << ' ' << to_string(variate::speed) << ' ' << to_string(variate::roast) << ' ' << to_string(variate::hungry);
+		for(int i = 0; i <= 6; i++){
+			s << ' ' << to_string(variate::aqfish_cnt[i]);
+		}
+		for(int i = 0; i < 2; i++){
+			for(int j = 0; j < 7; j++){
+				s << ' ' << to_string(variate::fish[j][i]);
+			}
+		}
+		return s.str();
+	}
 	namespace decode_code{
 		inline bool decode1(string s, bool us){
-			long long coin;
-			int lv, lv2, c, bf, st, sl, clean, gan, aqc, aqs[7], clesb, ty, sp, fi[7][2], ro, hung;
-			stringstream str(s);
-			str >> coin >> lv >> lv2 >> c >> bf >> st >> sl >> clean >> gan >> aqc;
+			long long coin, c;
+			int lv, lv2, bf, st, sl, clean, gan, aqc, aqs[7], clesb, ty, sp, fi[7][2], ro, hung;
+			istringstream str(s);
+			str >> coin >> lv >> lv2 >> c >> bf >> st >> sl >> clean >> clesb >> gan >> aqc >> ty >> sp >> ro >> hung;
 			for(int i = 0; i <= 6; i++){
 				str >> aqs[i];
 			}
-			str >> ty >> clesb >> sp >> ro >> hung;
-			for(int i = 0; i <= 2; i++){
+			for(int i = 0; i < 2; i++){
 				for(int j = 0; j < 7; j++){
 					str >> fi[j][i];
 				}
 			}
-			string s_2;
-			s_2 += to_string(coin);
-			s_2 += " ";
-			s_2 += to_string(lv);
-			s_2 += " ";
-			s_2 += to_string(lv2);
-			s_2 += " ";
-			s_2 += to_string(c);
-			s_2 += " ";
-			s_2 += to_string(bf);
-			s_2 += " ";
-			s_2 += to_string(st);
-			s_2 += " ";
-			s_2 += to_string(sl);
-			s_2 += " ";
-			s_2 += to_string(clean);
-			s_2 += " ";
-			s_2 += to_string(gan);
-			s_2 += " ";
-			s_2 += to_string(aqc);
-			for(int i = 0; i <= 6; i++){
-				s_2 += " ";
-				s_2 += to_string(aqs[i]);
+			if(coin < 0 || lv < 0 || lv > variate::max_level || lv2 < 0 || lv2 > variate::max_level2 || c < 0 || bf <= 0 || bf > 100 || bf <= 0 || 
+			st < 1 || st > 100 || sl < 0 || sl > 100 || clean < 0 || clesb < 1 || gan < 0 || gan > 6 || aqc < 0 || ty < 0 || ro < 0 || hung < 0){
+				return false;
 			}
-			s_2 += " ";
-			s_2 += to_string(ty);
-			s_2 += " ";
-			s_2 += to_string(clesb);
-			s_2 += " ";
-			s_2 += to_string(sp);
-			s_2 += " ";
-			s_2 += to_string(ro);
-			s_2 += " ";
-			s_2 += to_string(hung);
-			for(int i = 0; i <= 2; i++){
+			ostringstream s_2;
+			s_2 << to_string(coin) << ' ' << to_string(lv) << ' ' << to_string(lv2) << ' ' << to_string(c) << ' ' << to_string(bf) << ' ' << to_string(st) << ' ' << to_string(sl) << ' ' << to_string(clean) << ' ' << to_string(clesb) << ' ' << to_string(gan) << ' ' << to_string(aqc) << ' ' << to_string(ty) << ' ' << to_string(sp) << ' ' << to_string(ro) << ' ' << to_string(hung);
+			for(int i = 0; i <= 6; i++){
+				s_2 << ' ' << to_string(aqs[i]);
+			}
+			for(int i = 0; i < 2; i++){
 				for(int j = 0; j < 7; j++){
-					s_2 += " ";
-					s_2 += to_string(fi[j][i]);
+					s_2 << ' ' << to_string(fi[j][i]);
 				}
 			}
-			if(s_2 != s){
+			if(s_2.str() != s){
 				return false;
 			}
 			if(sp > 3){
@@ -141,21 +86,21 @@ namespace checkpoint{
 				variate::stime = st;
 				variate::slip = sl;
 				variate::cleaning_ball = clean;
+				variate::cleaning_sub = clesb;
 				variate::gan = gan;
 				variate::aqcnt = aqc;
 				variate::try_level = ty;
-				variate::cleaning_sub = clesb;
+				variate::speed = sp;
+				variate::roast = ro;
+				variate::hungry = hung;
 				for(int i = 0; i <= 6; i++){
 					variate::aqfish_cnt[i] = aqs[i];
 				}
-				for(int i = 0; i <= 2; i++){
+				for(int i = 0; i < 2; i++){
 					for(int j = 0; j < 7; j++){
 						variate::fish[j][i] = fi[j][i];
 					}
 				}
-				variate::speed = sp;
-				variate::roast = ro;
-				variate::hungry = hung;
 			}
 			return true;
 		}

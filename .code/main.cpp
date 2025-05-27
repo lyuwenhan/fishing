@@ -53,6 +53,7 @@ int main(){
 				}else if(variate::try_level == 1){
 					beat::main();
 				}else{
+					clear();
 					printa(m_did);
 				}
 				break;
