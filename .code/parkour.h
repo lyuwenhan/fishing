@@ -123,13 +123,13 @@ namespace parkour{
 	}
 	inline void main(){
 		if(variate::try_level != 0){
-			printa("已完成挑战");
+			printa(m_did);
 			return;
 		}
 		x = born1[level1][0];
 		y = born1[level1][1];
 		clear();
-		if(!printYn("是否进入跑酷1")){
+		if(!printYn(pk_in)){
 			return;
 		}
 		int swcnt = 0;
@@ -147,7 +147,7 @@ namespace parkour{
 			}
 			if(ty()){
 				swcnt = 0;
-				cout << "使用w或空格进行跳跃, 按r重生, 按backspace退出" << endl;
+				cout << pk_tip1 << endl;
 				show();
 				char c;
 				bool u = false, di = false;
@@ -165,14 +165,14 @@ namespace parkour{
 				}
 				if(fin(x, y - 1)){
 					clear();
-					printa("完成挑战, 获得 $500");
+					printa(pk_ok);
 					variate::money += 500;
 					variate::try_level = 1;
 					return;
 				}
 				if(die()){
-					print("你死了");
-					if(!printYn("是否重生")){
+					print(pk_die);
+					if(!printYn(pk_rb)){
 						return;
 					}
 					x = born1[level1][0];
@@ -262,7 +262,7 @@ namespace parkour{
 				sleep2(0.1);
 			}else{
 				ju = false;
-				cout << "使用wasd进行游泳, 按r重生, 按backspace退出" << endl;
+				cout << pk_tip2 << endl;
 				show();
 				swcnt++;
 				swcnt %= 5;
@@ -289,8 +289,8 @@ namespace parkour{
 					}
 				}
 				if(die()){
-					print("你死了");
-					if(!printYn("是否重生")){
+					print(pk_die);
+					if(!printYn(pk_rb)){
 						return;
 					}
 					x = born1[level1][0];

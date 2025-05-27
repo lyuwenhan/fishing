@@ -214,6 +214,13 @@ namespace beat{
 		return out;
 	}
 	inline void main(){
+		clear();
+		#ifdef EN
+		print("Not work for english");
+		print("If you want to try this");
+		print("Enter with chinese, and translate it.");
+		printa();
+		#endif
 		setup();
 		while(true){
 			clear();

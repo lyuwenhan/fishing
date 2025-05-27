@@ -56,8 +56,8 @@ namespace fishing{
 	"                              |____________|"};
 	int la = 0;
 	double la2 = 0;
-	const string wea[6] = {"雨    ", "雪    ", "晴      ", "阴      ", "多云    ", "雾      "};//wea[0]:level-5s*weather.second,wea[1]:level+5s*weather.second,wea[5]:slip+10;
-	const string ty[4] = {"", "小", "中", "大"};
+	const string wea[6] = fi_wea;//wea[0]:level-5s*weather.second,wea[1]:level+5s*weather.second,wea[5]:slip+10;
+	const string ty[4] = fi_big;
 	const string weatherpcr[3][4] = {{
 	"     \033[33;1m_____\033[m                                  ",
 	"    \033[33;1m|     |\033[m                                 ",
@@ -82,7 +82,7 @@ namespace fishing{
 	string color[15][45];
 	vector<int> fish[7];
 	int dirty = 0;
-	const string fish_name[7] = {"腐烂的", "普通的", "紫水晶", "青金石", "金", "绿宝石", "钻石"};
+	const string fish_name[7] = fi_type;
 	const string fish_color[7] = {"\033[1;31m", "\033[1;37m", "\033[1;35m", "\033[1;34m", "\033[1;33m", "\033[1;32m", "\033[1;36m"};
 	const int fish_add[7] = {0, 1, 2, 5, 10, 50, 100};
 	pair<int, int> ter_big;
@@ -97,7 +97,7 @@ namespace fishing{
 					return wea;
 				}else if(ra <= 15){
 					return {wea.first, random(1, 3)};
-				}else if(ra <= 17){
+				}else if(ra <= 18){
 					return {random(0, 1), wea.second};
 				}else{
 					return {random(2, 4), 0};
@@ -150,17 +150,21 @@ namespace fishing{
 	inline void get(bool is_big, int type){
 		clear();
 		if(variate::hungry <= 2){
-			printa((string)"你钓到了一条" + fish_color[type] + fish_name[type] + (is_big ? "大" : "") + "鱼\033[m, 因饥饿已食用");
+			printa((string)fi_got + fish_color[type] + fish_name[type] + (is_big ? fi_bf : "") + fi_eaten);
 			variate::hungry += type + 3;
 			return;
 		}
 		int pri = gr(variate::get_level, (is_big + 1) * fish_add[type]);
+		#ifndef EN
 		if(type == 4 && is_big){
 			clear();
-			printa((string)"你钓到了一条" + fish_color[type] + "鸡蛋鱼\033[m, 价值$" + to_string(pri));
+			printa((string)fi_got + fish_color[type] + fi_egg + to_string(pri));
 		}else{
-			printa((string)"你钓到了一条" + fish_color[type] + fish_name[type] + (is_big ? "大" : "") + "鱼\033[m, 价值$" + to_string(pri));
+		#endif
+			printa((string)fi_got + fish_color[type] + fish_name[type] + (is_big ? fi_bf : "") + fi_price + to_string(pri));
+		#ifndef EN
 		}
+		#endif
 		int cnt = 0;
 		for(int i = 0; i <= 6; i++){
 			cnt += variate::aqfish_cnt[i];
@@ -172,7 +176,7 @@ namespace fishing{
 			}
 		}
 		if(variate::aqcnt && (cnt < variate::aqcnt || !variate::aqfish_cnt[i] || i == type)){
-			if(printYn("是否放入水族馆")){
+			if(printYn(fi_inaqua)){
 				variate::aqfish_cnt[type]++;
 				if(cnt >= variate::aqcnt){
 					variate::aqfish_cnt[i]--;
@@ -219,31 +223,31 @@ namespace fishing{
 		}
 		int start = 0;
 		auto nowsize = getConsoleSize();
-		if(nowsize.second < 17 || nowsize.first < 44){
+		if(nowsize.second < 18 || nowsize.first < 44){
 			cout << "\033c\033[?25l" << flush;
-			if(nowsize.second < 17){
-				cout << "屏幕高度需至少为17行" << endl;
-				cout << "当前为 " << nowsize.second << " 行" << endl;
+			if(nowsize.second < 18){
+				cout << fi_shi << endl;
+				cout << fi_sn << nowsize.second << fi_hi << endl;
 			}
 			if(nowsize.first < 44){
-				cout << "屏幕宽度需至少为44行" << endl;
-				cout << "当前为 " << nowsize.first << " 列" << endl;
+				cout << fi_sw << endl;
+				cout << fi_sn << nowsize.first << fi_w << endl;
 			}
-			while(nowsize.second < 17 || nowsize.first < 44){
+			while(nowsize.second < 18 || nowsize.first < 44){
 				auto newsize = getConsoleSize();
-				if(newsize.second >= 17 && newsize.first >= 44){
+				if(newsize.second >= 18 && newsize.first >= 44){
 					nowsize = newsize;
 					break;
 				}
 				if(newsize != nowsize){
 					cout << "\033c\033[?25l" << flush;
-					if(newsize.second < 17){
-						cout << "屏幕高度需至少为17行" << endl;
-						cout << "当前为 " << newsize.second << " 行" << endl;
+					if(nowsize.second < 18){
+						cout << fi_shi << endl;
+						cout << fi_sn << nowsize.second << fi_hi << endl;
 					}
-					if(newsize.first < 44){
-						cout << "屏幕宽度需至少为44行" << endl;
-						cout << "当前为 " << newsize.first << " 列" << endl;
+					if(nowsize.first < 44){
+						cout << fi_sw << endl;
+						cout << fi_sn << nowsize.first << fi_w << endl;
 					}
 				}
 				nowsize = newsize;
@@ -284,7 +288,7 @@ namespace fishing{
 			}
 			cout << endl;
 		}
-		cout << "累计钓鱼数量: " << variate::cnt << " 当前天气: " << ty[weather.second] << wea[weather.first] << endl;
+		cout << fi_allfi << variate::cnt << fi_nowwea << ty[weather.second] << wea[weather.first] << endl;
 	}
 	void slep(double s){
 		if(s < 0.01){
@@ -593,8 +597,8 @@ namespace fishing{
 	}
 	inline void get_gan(){
 		clear();
-		print("鱼竿兑换");
-		print("当前鱼竿: " + fish_name[variate::gan] + "鱼竿");
+		print(fi_getgan);
+		print(fi_nowgan + fish_name[variate::gan] + fi_gan);
 		bool b[8] = {};
 		string s = "";
 		for(int i = 0; i <= 6; i++){
@@ -603,16 +607,16 @@ namespace fishing{
 				s += to_string(i);
 				s += ". ";
 				s += fish_name[i];
-				s += "鱼竿";
+				s += fi_gan;
 				s += ", ";
 			}
 		}
 		b[7] = true;
 		if(s.empty()){
-			print("暂无");
+			print(fi_no);
 			return;
 		}
-		s += "7. 退出";
+		s += fi_exit;
 		print(s);
 		int d;
 		while(true){
@@ -646,12 +650,12 @@ namespace fishing{
 			}
 		}
 		clear();
-		print("水族馆");
-		print("提示: 只有在水族馆里才能获得水族馆的收益");
-		print("1.退出");
+		print(fi_aq);
+		print(fi_aqtip);
+		print(fi_aexit);
 		variate::aqnow = time(0);
 		for(int i = 0; i <= 6; i++){
-			cout << fishing::fish_color[i] << fishing::fish_name[i] + "鱼: " << variate::aqfish_cnt[i] << "只\033[m" << endl;
+			cout << fishing::fish_color[i] << fishing::fish_name[i] << fi_f << variate::aqfish_cnt[i] << fi_azhi << endl;
 		}
 		while(getch() != '1');
 		int cnt = 0;
@@ -663,13 +667,13 @@ namespace fishing{
 		cnt *= variate::aqother / 60;
 		variate::aqother %= 60;
 		variate::money += cnt;
-		print("你共获得 " + to_string(cnt) + "$ 的收益");
+		print(fi_aget + to_string(cnt) + fi_aget2);
 	}
 	void make_food(){
 		while(true){
 			clear();
-			print("生鱼肉");
-			print("当前数量: ");
+			print(fi_mfr);
+			print(fi_mfn);
 			bool b[8] = {};
 			string s = "";
 			for(int i = 0; i <= 6; i++){
@@ -678,30 +682,30 @@ namespace fishing{
 					s += to_string(i);
 					s += ". ";
 					s += fish_name[i];
-					s += "鱼";
+					s += fi_f;
 					s += ", ";
 				}
 			}
 			b[7] = true;
 			if(s.empty()){
-				print("暂无");
+				print(fi_no);
 				sleept(0.5);
 				return;
 			}
-			s += "7. 退出";
+			s += fi_exit;
 			for(int i = 1; i <= 6; i++){
-				cout << fish_color[i] << fish_name[i] + "鱼:" << "\033[m" << endl;
+				cout << fish_color[i] << fish_name[i] + fi_f << "\033[m" << endl;
 				if(fish[i].size()){
-					cout << "    鱼池: " << fish[i].size() << " 只" << endl;
+					cout << fi_chi << fish[i].size() << fi_azhi2 << endl;
 				}
 				if(variate::fish[i][0]){
-					cout << "    生鱼: " << variate::fish[i][0] << " 只" << endl;
+					cout << fi_raw << variate::fish[i][0] << fi_azhi2 << endl;
 				}
 				if(variate::fish[i][1]){
-					cout << "    烤鱼: " << variate::fish[i][1] << " 只" << endl;
+					cout << fi_roast << variate::fish[i][1] << fi_azhi2 << endl;
 				}
 				if(fish[i].empty() && !variate::fish[i][0] && !variate::fish[i][1]){
-					cout << "    暂无\033[m" << endl;
+					cout << fi_no2 << endl;
 				}
 			}
 			cout << endl;
@@ -729,8 +733,8 @@ namespace fishing{
 	}
 	void roast_food(){
 		clear();
-		print("制作烤鱼");
-		print("当前数量: ");
+		print(fi_ro);
+		print(fi_mfn);
 		bool b[8] = {};
 		string s = "";
 		for(int i = 0; i <= 6; i++){
@@ -739,30 +743,30 @@ namespace fishing{
 				s += to_string(i);
 				s += ". ";
 				s += fish_name[i];
-				s += "鱼";
+				s += fi_f;
 				s += ", ";
 			}
 		}
 		b[7] = true;
 		if(s.empty()){
-			print("暂无");
+			print(fi_no);
 			sleept(0.5);
 			return;
 		}
-		s += "7. 退出";
+		s += fi_exit;
 		for(int i = 1; i <= 6; i++){
-			cout << fish_color[i] << fish_name[i] + "鱼:" << "\033[m" << endl;
+			cout << fish_color[i] << fish_name[i] + fi_f << "\033[m" << endl;
 			if(fish[i].size()){
-				cout << "    鱼池: " << fish[i].size() << " 只" << endl;
+				cout << fi_chi << fish[i].size() << fi_azhi2 << endl;
 			}
 			if(variate::fish[i][0]){
-				cout << "    生鱼: " << variate::fish[i][0] << " 只" << endl;
+				cout << fi_raw << variate::fish[i][0] << fi_azhi2 << endl;
 			}
 			if(variate::fish[i][1]){
-				cout << "    烤鱼: " << variate::fish[i][1] << " 只" << endl;
+				cout << fi_roast << variate::fish[i][1] << fi_azhi2 << endl;
 			}
 			if(fish[i].empty() && !variate::fish[i][0] && !variate::fish[i][1]){
-				cout << "    暂无\033[m" << endl;
+				cout << fi_no2 << endl;
 			}
 		}
 		cout << endl;
@@ -788,8 +792,8 @@ namespace fishing{
 		const int l = 0, r = variate::fish[d][0];
 		int a = 0;
 		clear();
-		cout << "按 a 减少, d 增加, 按 enter 制作, 按 backspace 退出" << endl << "制作熟鱼肉: " << fish_color[d] << fish_name[d] + "鱼:" << "\033[m" << endl;
-		cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << " 只" << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
+		cout << fi_romain << endl << fi_rom2 << fish_color[d] << fish_name[d] + fi_f << "\033[m" << endl;
+		cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << fi_azhi2 << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 		while(true){
 			char c = getch();
 			if(c == 'a' || c == 'A'){
@@ -814,7 +818,7 @@ namespace fishing{
 				for(int i = 0; i < time; i++){
 					for(int j = 0; j < 20; j++){
 						clear();
-						cout << "烤制中" << endl;
+						cout << fi_rob << endl;
 						int ok = i * 20 + j, all = time;
 						int done = int((double)ok / all * 3);
 						bool d2 = done & 1;
@@ -829,17 +833,17 @@ namespace fishing{
 							cout << "\033[31;1m=\033[m";
 						}
 						cout << endl;
-						cout << i * variate::roast << "/" << a << " 完成" << endl;
+						cout << i * variate::roast << "/" << a << fi_rod << endl;
 						sleept(0.5);
 					}
 				}
 				clear();
-				cout << "烤制完成" << endl;
+				cout << fi_rodone << endl;
 				for(int k = 0; k < 30; k++){
 					cout << "\033[32;1m=\033[m";
 				}
 				cout << endl;
-				cout << a << "/" << a << " 完成" << endl;
+				cout << a << "/" << a << fi_rod << endl;
 				sleept(1);
 				return;
 			}else if(c == 127){
@@ -847,17 +851,17 @@ namespace fishing{
 				return;
 			}
 			clear();
-			cout << "按 a 减少, d 增加, 按 enter 制作, 按 backspace 退出" << endl << "制作熟鱼肉: " << fish_color[d] << fish_name[d] + "鱼:" << "\033[m" << endl;
-			cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << " 只" << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
+			cout << fi_romain << endl << fi_rom2 << fish_color[d] << fish_name[d] + fi_f << "\033[m" << endl;
+			cout << (a == l ? "\033[1;31m" : "\033[1m") << " < \033[m" << a << fi_azhi2 << (a == r ? "\033[1;31m" : "\033[1m") << " > \033[m" << endl;
 		}
 	}
 	void eat_food(){
 		while(true){
 			clear();
-			print("食用生鱼肉");
-			printnl("当前饱食度: ");
+			print(fi_em);
+			printnl(fi_nowhun);
 			cout << (variate::hungry < 10 ? "\033[31;1m" : (variate::hungry < 30 ? "" : variate::hungry < 35 ? "\033[32m" : "\033[32;1m")) << variate::hungry << "\033[m" << endl;
-			print("当前数量: ");
+			print(fi_mfn);
 			bool b[8] = {};
 			string s = "";
 			for(int i = 0; i <= 6; i++){
@@ -866,24 +870,24 @@ namespace fishing{
 					s += to_string(i);
 					s += ". ";
 					s += fish_name[i];
-					s += "生鱼";
+					s += fi_eraw;
 					s += ", ";
 				}
 			}
 			b[7] = true;
 			if(s.empty()){
-				print("暂无");
+				print(fi_no);
 				sleept(0.5);
 				return;
 			}
-			s += "7. 退出";
+			s += fi_exit;
 			for(int i = 1; i <= 6; i++){
-				cout << fish_color[i] << fish_name[i] + "鱼:" << "\033[m" << endl;
+				cout << fish_color[i] << fish_name[i] + fi_f << "\033[m" << endl;
 				if(variate::fish[i][0]){
-					cout << "    生鱼: " << variate::fish[i][0] << " 只 +" << i + 3 << endl;
+					cout << fi_raw << variate::fish[i][0] << fi_ezhi << i + 3 << endl;
 				}
 				if(!variate::fish[i][0] && !variate::fish[i][1]){
-					cout << "    暂无\033[m" << endl;
+					cout << fi_no2 << endl;
 				}
 			}
 			cout << endl;
@@ -916,10 +920,10 @@ namespace fishing{
 	void eat_food_roast(){
 		while(true){
 			clear();
-			print("食用熟鱼肉");
-			printnl("当前饱食度: ");
+			print(fi_eroast);
+			printnl(fi_nowhun);
 			cout << (variate::hungry < 10 ? "\033[31;1m" : (variate::hungry < 30 ? "" : variate::hungry < 35 ? "\033[32m" : "\033[32;1m")) << variate::hungry << "\033[m" << endl;
-			print("当前数量: ");
+			print(fi_mfn);
 			bool b[8] = {};
 			string s = "";
 			for(int i = 0; i <= 6; i++){
@@ -928,24 +932,24 @@ namespace fishing{
 					s += to_string(i);
 					s += ". ";
 					s += fish_name[i];
-					s += "熟鱼";
+					s += fi_erof;
 					s += ", ";
 				}
 			}
 			b[7] = true;
 			if(s.empty()){
-				print("暂无");
+				print(fi_no);
 				sleept(0.5);
 				return;
 			}
-			s += "7. 退出";
+			s += fi_exit;
 			for(int i = 1; i <= 6; i++){
-				cout << fish_color[i] << fish_name[i] + "鱼:" << "\033[m" << endl;
+				cout << fish_color[i] << fish_name[i] + fi_f << "\033[m" << endl;
 				if(variate::fish[i][1]){
-					cout << "    烤鱼: " << variate::fish[i][1] << " 只 +" << i + 7 << endl;
+					cout << fi_roast << variate::fish[i][1] << fi_ezhi << i + 7 << endl;
 				}
 				if(!variate::fish[i][0] && !variate::fish[i][1]){
-					cout << "    暂无\033[m" << endl;
+					cout << fi_no2 << endl;
 				}
 			}
 			cout << endl;
@@ -977,23 +981,23 @@ namespace fishing{
 	void no_roast(){
 		while(true){
 			clear();
-			print("1.制作食物, 2.食用生鱼肉, 3.退出");
-			printnl("当前饱食度: ");
+			print(fi_nrm);
+			printnl(fi_nowhun);
 			cout << (variate::hungry < 10 ? "\033[31;1m" : (variate::hungry < 30 ? "" : variate::hungry < 35 ? "\033[32m" : "\033[32;1m")) << variate::hungry << "\033[m" << endl;
-			print("当前数量: ");
+			print(fi_mfn);
 			for(int i = 1; i <= 6; i++){
-				cout << fish_color[i] << fish_name[i] + "鱼:" << "\033[m" << endl;
+				cout << fish_color[i] << fish_name[i] + fi_f << "\033[m" << endl;
 				if(fish[i].size()){
-					cout << "    鱼池: " << fish[i].size() << " 只" << endl;
+					cout << fi_chi << fish[i].size() << fi_azhi2 << endl;
 				}
 				if(variate::fish[i][0]){
-					cout << "    生鱼: " << variate::fish[i][0] << " 只" << endl;
+					cout << fi_raw << variate::fish[i][0] << fi_azhi2 << endl;
 				}
 				if(variate::fish[i][1]){
-					cout << "    烤鱼: " << variate::fish[i][1] << " 只" << endl;
+					cout << fi_roast << variate::fish[i][1] << fi_azhi2 << endl;
 				}
 				if(fish[i].empty() && !variate::fish[i][0] && !variate::fish[i][1]){
-					cout << "    暂无\033[m" << endl;
+					cout << fi_no2 << endl;
 				}
 			}
 			while(true){
@@ -1018,23 +1022,23 @@ namespace fishing{
 		}
 		while(true){
 			clear();
-			print("1.制作食物, 2.烤制食物, 3.食用生鱼肉, 4.食用熟鱼肉, 5.退出");
-			printnl("当前饱食度: ");
+			print(fi_rm);
+			printnl(fi_nowhun);
 			cout << (variate::hungry < 10 ? "\033[31;1m" : (variate::hungry < 30 ? "" : variate::hungry < 35 ? "\033[32m" : "\033[32;1m")) << variate::hungry << "\033[m" << endl;
-			print("当前数量: ");
+			print(fi_mfn);
 			for(int i = 1; i <= 6; i++){
-				cout << fish_color[i] << fish_name[i] + "鱼:" << "\033[m" << endl;
+				cout << fish_color[i] << fish_name[i] + fi_f << "\033[m" << endl;
 				if(fish[i].size()){
-					cout << "    鱼池: " << fish[i].size() << " 只" << endl;
+					cout << fi_chi << fish[i].size() << fi_azhi2 << endl;
 				}
 				if(variate::fish[i][0]){
-					cout << "    生鱼: " << variate::fish[i][0] << " 只" << endl;
+					cout << fi_raw << variate::fish[i][0] << fi_azhi2 << endl;
 				}
 				if(variate::fish[i][1]){
-					cout << "    烤鱼: " << variate::fish[i][1] << " 只" << endl;
+					cout << fi_roast << variate::fish[i][1] << fi_azhi2 << endl;
 				}
 				if(fish[i].empty() && !variate::fish[i][0] && !variate::fish[i][1]){
-					cout << "    暂无\033[m" << endl;
+					cout << fi_no2 << endl;
 				}
 			}
 			cout << endl;
@@ -1064,8 +1068,8 @@ namespace fishing{
 			clear();
 			if(dirty >= 10){
 				cout << "\033[31m";
-				print("当前污染等级已满, 大部分鱼因病死亡\033[m");
-				print("1.清理鱼池");
+				print(fi_sum1);
+				print(fi_sum2);
 				for(int i = 0; i <= 6; i++){
 					while(!fish[i].empty()){
 						fish[i].pop_back();
@@ -1077,13 +1081,13 @@ namespace fishing{
 					variate::money -= 1000;
 				}
 			}
-			print("1.开始钓鱼, 2.清理鱼池, 3.购买钓竿, 4.查看水族馆, 5.制作食物, 6.全部卖出, 7.全部卖出并退出");
-			printnl("当前饱食度: ");
+			print(fi_sum3);
+			printnl(fi_nowhun);
 			cout << (variate::hungry < 10 ? "\033[31;1m" : (variate::hungry < 30 ? "" : variate::hungry < 35 ? "\033[32m" : "\033[32;1m")) << variate::hungry << "\033[m" << endl;
-			print("当前鱼竿: " + fish_name[variate::gan] + "鱼竿");
-			print("当前污染等级: " + to_string(dirty));
+			print(fi_sum4 + fish_name[variate::gan] + fi_gan);
+			print(fi_sum5 + to_string(dirty));
 			for(int i = 0; i <= 6; i++){
-				cout << fish_color[i] << fish_name[i] + "鱼:" << "\033[m" << endl;
+				cout << fish_color[i] << fish_name[i] + fi_f << "\033[m" << endl;
 				for(int j = 0; j < fish[i].size(); j++){
 					if(fish[i][j] >= 8){
 						cout << "\033[1;32m";
@@ -1092,10 +1096,10 @@ namespace fishing{
 					}else{
 						cout << "\033[1m";
 					}
-					cout << "    新鲜度:" << fish[i][j] << "\033[m" << endl;
+					cout << fi_scl << fish[i][j] << "\033[m" << endl;
 				}
 				if(fish[i].empty()){
-					cout << "    暂无\033[m" << endl;
+					cout << fi_no2 << endl;
 				}
 			}
 			while(true){
@@ -1124,14 +1128,14 @@ namespace fishing{
 				}else if(c == '2'){
 					clear();
 					if(!dirty){
-						cout << "无需清理" << endl;
+						cout << fi_ncl << endl;
 						break;
 					}
 					while(true){
 						if(variate::cleaning_ball){
-							print("1.清理, 2.退出");
-							print("当前污染等级: " + to_string(variate::cleaning_ball));
-							print("当前清洁剂个数: " + to_string(variate::cleaning_ball));
+							print(fi_cl);
+							print(fi_iscl + to_string(variate::cleaning_ball));
+							print(fi_clbcnt + to_string(variate::cleaning_ball));
 							char c = 0;
 							while(true){
 								c = getch();
@@ -1149,10 +1153,10 @@ namespace fishing{
 								break;
 							}
 						}else{
-							print("1.购买清洁剂并清理, 2.退出");
-							print("当前污染等级: " + to_string(variate::cleaning_ball));
-							print("清洁剂: ");
-							print("    购买花费: $20, 当前金币数量: $" + to_string(variate::money));
+							print(fi_clm1);
+							print(fi_cldt + to_string(variate::cleaning_ball));
+							print(fi_clji);
+							print(fi_clbuy + to_string(variate::money));
 							char c = 0;
 							while(true){
 								c = getch();
@@ -1162,7 +1166,7 @@ namespace fishing{
 							}
 							if(c == '1'){
 								if(variate::money < 20){
-									cout << "金钱不够" << endl;
+									cout << fi_mnng << endl;
 									break;
 								}else{
 									variate::money -= 20;
@@ -1176,7 +1180,7 @@ namespace fishing{
 							}
 						}
 						if(!dirty){
-							cout << "清理完成" << endl;
+							cout << fi_clok << endl;
 							break;
 						}
 					}
@@ -1190,7 +1194,7 @@ namespace fishing{
 						aqua();
 						sleept(1);
 					}else{
-						print("请在购买水族馆后在来查看");
+						print(fi_nwt);
 						sleept(0.5);
 					}
 					break;

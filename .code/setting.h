@@ -7,34 +7,25 @@ using std::ostream;
 using std::to_string;
 #include"variate.h"
 #include"function.h"
+const string st_output_speed[3] = st_speed;
 namespace setting{
 	void setting(){
-		print("1.更改输出倍速, 2.退出");
-		print("当前输出倍速: " + to_string(variate::speed) + "(最大1000)");
+		clear();
+		print(st_m);
+		print(st_m2 + st_output_speed[variate::speed]);
 		while(true){
 			char c = getch();
 			if(c == '1'){
-				int s = 0;
-				while(true){
-					char d = getch();
-					if(isdigit(d)){
-						s *= 10;
-						s += d ^ '0';
-						if(s > 1000){
-							s = 1000;
-						}
-						cout << "\r          \r" << s << flush;
-					}else if(d == 127){
-						s /= 10;
-						cout << "\r          \r" << s << flush;
-					}else if(d == '\r'){
-						break;
-					}
+				clear();
+				print(st_speeds);
+				char c = getch();
+				while(c < '1' || c > '3'){
+					c = getch();
 				}
-				variate::speed = s;
-				return;
+				variate::speed = c - '0';
+				break;
 			}else if(c == '2'){
-				return;
+				break;
 			}
 		}
 	}

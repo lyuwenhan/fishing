@@ -117,6 +117,26 @@ inline string getline(string &ans, bool b = false){
 	cout << endl;
 	return ans;
 }
+inline string getlineYe(string &ans, bool b = false){
+	ans = "";
+	char a = 0;
+	while((a = getch()) != '\r'){
+		if(issymbol(a) || isdigit(a) || islower(a) || isupper(a)){
+			ans += a;
+			if(b){
+				cout << a << flush;
+			}
+		}
+		if(a == 127 && ans.length()){
+			ans.pop_back();
+			if(b){
+				cout << "\b \b" << flush;
+			}
+		}
+	}
+	cout << endl;
+	return ans;
+}
 inline void sleept(double time){
 	while(getch2());
 	while(time > 0.1){
@@ -152,11 +172,11 @@ inline void print(string s, double time = 0.02){
     printnl(s, time);
     cout << endl;
 }
-inline void printa(string s, double time = 0.02){
-	print(s + (s.empty() ? "(按enter继续)" : "    (按enter继续)"), time);
+inline void printa(string s = "", double time = 0.02){
+	print(s + (s.empty() ? "" : "    ") + press_enter_continue, time);
 	while(getch() != '\r');
 }
-inline bool printYn(string s, double time = 0.02){
+inline bool printYn(string s = "", double time = 0.02){
 	print(s + (s.empty() ? "(Y/n)" : " (Y/n)"), time);
 	char c;
 	while((c = getch()) != 'Y' && c != 'y' && c != 'N' && c != 'n');
@@ -169,22 +189,9 @@ inline int random(int l, int r){
 }
 inline void choose(){
 	clear();
-	print("请选择开局技能");
-	print("1.美味诱饵, 2.稀世珍宝, 3.牢靠安全绳, 4.强效清洁剂, 5.大力水手, 6.放长线钓大鱼, 7.孤苦人家");
-	print("美味诱饵:");
-	print("    上钩速度变为原先的1.5倍");
-	print("稀世珍宝:");
-	print("    鱼的价格变为原先的2倍");
-	print("牢靠安全绳:");
-	print("    脱钩概率由50%变为10%");
-	print("强效清洁剂:");
-	print("    初始获得1个清洁剂, 并且清洁剂效果翻倍");
-	print("大力水手:");
-	print("    甩杆倍速由1倍变为2倍");
-	print("放长线钓大鱼:");
-	print("    大鱼概率由20%变为40%");
-	print("孤苦人家:");
-	print("    无");
+	for(string i : vector<string>(fun_choose)){
+		print(i);
+	}
 	while(true){
 		char c = getch();
 		if(c == '1'){

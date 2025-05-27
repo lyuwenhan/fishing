@@ -50,7 +50,7 @@ namespace shop{
 					print("    升级花费: $500, 当前金币数量: $" + to_string(variate::money));
 				}
 			}
-			print("清洁剂: ");
+			print(fi_clji);
 			print("    当前清洁剂个数: " + to_string(variate::cleaning_ball));
 			print("    购买花费: $10, 当前金币数量: $" + to_string(variate::money));
 			print("清洁效率: ");
@@ -89,7 +89,7 @@ namespace shop{
 						sleept(0.5);
 						break;
 					}else if(variate::money < variate::cost[variate::level + 1]){
-						print("金钱不够");
+						print(fi_mnng);
 						sleept(0.5);
 						break;
 					}else{
@@ -104,7 +104,7 @@ namespace shop{
 						sleept(0.5);
 						break;
 					}else if(variate::money < variate::cost2[variate::get_level + 1]){
-						print("金钱不够");
+						print(fi_mnng);
 						sleept(0.5);
 						break;
 					}else{
@@ -120,7 +120,7 @@ namespace shop{
 						break;
 					}else if(variate::slip == 1){
 						if(variate::money < 500){
-							print("金钱不够");
+							print(fi_mnng);
 							sleept(0.5);
 							break;
 						}else{
@@ -132,7 +132,7 @@ namespace shop{
 						}
 					}else{
 						if(variate::money < 100){
-							print("金钱不够");
+							print(fi_mnng);
 							sleept(0.5);
 							break;
 						}else{
@@ -151,7 +151,7 @@ namespace shop{
 					}
 				}else if(type == '4'){
 					if(variate::money < 10){
-						print("金钱不够");
+						print(fi_mnng);
 						sleept(0.5);
 						break;
 					}else{
@@ -166,7 +166,7 @@ namespace shop{
 						sleept(0.5);
 						break;
 					}else if(variate::money < 30){
-						print("金钱不够");
+						print(fi_mnng);
 						sleept(0.5);
 						break;
 					}else{
@@ -182,7 +182,7 @@ namespace shop{
 						sleept(0.5);
 						break;
 					}else if(variate::money < (variate::aqcnt + 2) * 100){
-						print("金钱不够");
+						print(fi_mnng);
 						sleept(0.5);
 						break;
 					}else{
@@ -200,7 +200,7 @@ namespace shop{
 					}else{
 						if(variate::roast < 1){
 							if(variate::money < 50){
-								print("金钱不够");
+								print(fi_mnng);
 								sleept(0.5);
 								break;
 							}else{
@@ -212,7 +212,7 @@ namespace shop{
 							}
 						}else if(variate::roast == 1){
 							if(variate::money < 1000){
-								print("金钱不够");
+								print(fi_mnng);
 								sleept(0.5);
 								break;
 							}else{
@@ -224,7 +224,7 @@ namespace shop{
 							}
 						}else{
 							if(variate::money < 2000){
-								print("金钱不够");
+								print(fi_mnng);
 								sleept(0.5);
 								break;
 							}else{
@@ -271,7 +271,7 @@ namespace shop{
 						sleept(0.5);
 						break;
 					}else if(variate::money < 1000){
-						print("金钱不够");
+						print(fi_mnng);
 						sleept(0.5);
 						break;
 					}else{
@@ -287,7 +287,7 @@ namespace shop{
 						sleept(0.5);
 						break;
 					}else if(variate::money < 1000){
-						print("金钱不够");
+						print(fi_mnng);
 						sleept(0.5);
 						break;
 					}else{

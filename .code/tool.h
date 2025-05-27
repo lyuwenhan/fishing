@@ -861,19 +861,16 @@ namespace tool{
 	}
 	inline void tool(){
 		clear();
-		cout << "开发者模式, 如需使用此功能, 请询问开发者密码。" << endl;
-		cout << "请输入密码: " << flush;
+		cout << "这里不是你该来的地方" << endl;
+		cout << "This is not the right place" << endl;
+		cout << "请输入密码或按下回车" << endl;
+		cout << "Please enter the password or press enter" << endl;
 		string mi;
-		getline(mi);
-		if(saving::bytesToHex(saving::sha256KeyFromPasswordWithSalt(mi, saving::hexToBytes("7a4424eba2a49338ab86d9a397b96194e190e80042dc081ea4dacc0c6420f4953b7d6413fcb5396e5e54791f64b6c1c1d2a09dcdb157742509e5ac607c185e00"))) != "a07db189aea0fa3e2cc144471426e32e43bfb969f0f29bb54b32395a49f9908b"){
-			cout << "密码错误, 请重试: " << flush;
-			string mi;
-			getline(mi);
-			if(saving::bytesToHex(saving::sha256KeyFromPasswordWithSalt(mi, saving::hexToBytes("7a4424eba2a49338ab86d9a397b96194e190e80042dc081ea4dacc0c6420f4953b7d6413fcb5396e5e54791f64b6c1c1d2a09dcdb157742509e5ac607c185e00"))) != "a07db189aea0fa3e2cc144471426e32e43bfb969f0f29bb54b32395a49f9908b"){
-				return;
-			}
-		}
+		getlineYe(mi);
 		clear();
+		if(saving::bytesToHex(saving::sha256KeyFromPasswordWithSalt(mi, saving::hexToBytes("7a4424eba2a49338ab86d9a397b96194e190e80042dc081ea4dacc0c6420f4953b7d6413fcb5396e5e54791f64b6c1c1d2a09dcdb157742509e5ac607c185e00"))) != "a07db189aea0fa3e2cc144471426e32e43bfb969f0f29bb54b32395a49f9908b"){
+			return;
+		}
 		vector<type1> li = {	
 			(type1){
 				"金币数量", 

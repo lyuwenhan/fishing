@@ -110,24 +110,21 @@ namespace checkpoint{
 			}
 			return true;
 		}
-		inline bool decode(string code, bool ec, bool us){
-			if(decode1(code, us)){
+		inline bool decode(string code, bool ec){
+			if(decode1(code, ec)){
 				if(ec){
-					cout << "读取成功" << endl;
+					cout << chp_suc << endl;
 				}
 				return true;
 			}else{
 				if(ec){
-					cout << "存档损坏, 请换个文件再试试。具体文件可以去checkpoint/name.txt中查询" << endl;
+					cout << chp_err << endl;
 				}
 				return false;
 			}
 		}
-		inline bool decode(string code, bool ec){
-			return decode(code, ec, true);
-		}
 		inline bool decode(string code){
-			return decode(code, true, true);
+			return decode(code, true);
 		}
 	}
 	using decode_code::decode;
@@ -137,24 +134,24 @@ namespace checkpoint{
 	inline bool login(){
 		string name, pwd;
 		clear();
-		printnl("登录");
+		printnl(chp_login);
 		cout << endl;
-		printnl("用户名: ");
+		printnl(chp_un);
 		getline(name, true);
 		if(!check_name(name)){
-			print("用户名不合法");
+			print(chp_invalid);
 			sleept(1);
 			return false;
 		}
-		printnl("密码: ");
+		printnl(chp_pwd);
 		getline(pwd);
 		variate::name = name;
 		clear();
-		if(ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, "nopwd"), false, false)){
+		if(ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, "nopwd"), false)){
 			sleept(1);
 			return decode(saving::decryptFile("checkpoint/" + name, "nopwd"));
 		}else{
-			print("用户名或密码错误");
+			print(chp_nouser);
 			sleept(1);
 			return false;
 		}
@@ -162,32 +159,32 @@ namespace checkpoint{
 	inline bool regi(){
 		string name, pwd, pwd2;
 		clear();
-		printnl("注册");
+		printnl(chp_regi);
 		cout << endl;
-		printnl("用户名: ");
+		printnl(chp_un);
 		getline(name, true);
 		if(!check_name(name)){
-			print("用户名不合法");
+			print(chp_invalid);
 			sleept(1);
 			return false;
 		}
-		printnl("密码: ");
+		printnl(chp_pwd);
 		getline(pwd);
-		printnl("请确认密码: ");
+		printnl(chp_repwd);
 		getline(pwd2);
 		if(pwd != pwd2){
-			print("两次密码不一致");
+			print(chp_pwdng);
 			sleept(1);
 			return false;
 		}
 		variate::name = name;
 		clear();
 		if(ifstream((string)"checkpoint/" + name).good()){
-			print("用户已存在");
+			print(chp_yesuser);
 			sleept(1);
 			return false;
 		}else{
-			print("注册成功");
+			print(chp_regigood);
 			return true;
 		}
 	}
@@ -195,7 +192,7 @@ namespace checkpoint{
 		string name;
 		while(true){
 			clear();
-			print("1.登录, 2.注册, 3.退出");
+			print(chp_main);
 			char c = getch();
 			while(c != '1' && c != '2' && c != '3'){
 				c = getch();
