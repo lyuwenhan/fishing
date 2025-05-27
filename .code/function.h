@@ -104,13 +104,13 @@ inline string getline(string &ans, bool b = false){
 				ans += a;
 				if(b){
 					cout << a << flush;
+				}else{
+					cout << '*' << flush;
 				}
 			}
 			if(a == 127 && ans.length()){
 				ans.pop_back();
-				if(b){
-					cout << "\b \b" << flush;
-				}
+				cout << "\b \b" << flush;
 			}
 		}
 	}
@@ -157,15 +157,24 @@ inline void printnl(string s, double time = 0.02){
 	if(variate::speed >= 3){
 		cout << s;
 	}else{
+		#idfed EN
+		bool to = false;
+		#endif
         auto it = s.begin();
-        while (it != s.end()) {
+        while(it != s.end()){
             auto p = it;
             utf8::next(it, s.end());
             string ch(p, it);
-            cout << ch << flush;
 			#ifdef EN
-            sleept(time * ch.length() / variate::speed / 2);
+			if(to){
+				cout << ch << flush;
+				sleept(time * ch.length() / variate::speed);
+			}else{
+				cout << ch;
+			}
+			to = !to;
 			#else
+            cout << ch << flush;
             sleept(time * ch.length() / variate::speed);
 			#endif
         }
