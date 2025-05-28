@@ -8,8 +8,8 @@ using std::to_string;
 #include"function.h"
 #include"tool.h"
 namespace shop{
-	#ifdef EN
-	inline void shop0() {
+	inline void shop0(){
+		#ifdef EN
 		while (true) {
 			clear();
 			if (variate::aqcnt > 30) {
@@ -242,91 +242,7 @@ namespace shop{
 				}
 			}
 		}
-	}
-	inline void shop1() {
-		clear();
-		printa("Welcome to the Super Shop. You can buy some special items here.");
-		while (true) {
-			clear();
-			print("1. Cast Speed Multiplier, 2. Upgrade Big Fish Chance, 3. Return.");
-			print("Cast Speed Multiplier: ");
-			if (variate::stime >= 10) {
-				print("    Max Level Reached");
-			} else {
-				print("    Current: " + to_string(variate::stime) + "x, After Upgrade: " + to_string(variate::stime + 1) + "x");
-				print("    Cost: $1000, Current Gold: $" + to_string(variate::money));
-			}
-			print("Big Fish Chance: ");
-			if (variate::bf >= 60) {
-				print("    Max Level Reached");
-			} else {
-				print("    Current: " + to_string(variate::bf) + "%, After Upgrade: " + to_string(variate::bf + 5) + "%");
-				print("    Cost: $1000, Current Gold: $" + to_string(variate::money));
-			}
-			char type;
-			while (true) {
-				type = getch();
-				if (type == '1') {
-					if (variate::stime >= 10) {
-						print("Max Level Reached");
-						sleept(0.5);
-						break;
-					} else if (variate::money < 1000) {
-						print(fi_mnng);
-						sleept(0.5);
-						break;
-					} else {
-						variate::money -= 1000;
-						variate::stime++;
-						print("Purchase Successful");
-						sleept(0.5);
-						break;
-					}
-				} else if (type == '2') {
-					if (variate::bf >= 60) {
-						print("Max Level Reached");
-						sleept(0.5);
-						break;
-					} else if (variate::money < 1000) {
-						print(fi_mnng);
-						sleept(0.5);
-						break;
-					} else {
-						variate::money -= 1000;
-						variate::bf += 5;
-						print("Purchase Successful");
-						sleept(0.5);
-						break;
-					}
-				} else if (type == '3') {
-					sleept(0.5);
-					return;
-				}
-			}
-		}
-	}
-
-	inline void shop() {
-		while (true) {
-			clear();
-			print("1. Normal Shop, 2. Super Shop, 3. Exit.");
-			char type;
-			while (true) {
-				type = getch();
-				if (type == '1') {
-					shop0();
-					break;
-				} else if (type == '2') {
-					shop1();
-					break;
-				} else if (type == '3') {
-					return;
-				}
-			}
-		}
-	}
-	#else
-	inline void shop0(){
+		#else
 		while(true){
 			clear();
 			if(variate::aqcnt > 30){
@@ -559,8 +475,71 @@ namespace shop{
 				}
 			}
 		}
+		#endif
 	}
 	inline void shop1(){
+		#ifdef EN
+		clear();
+		printa("Welcome to the Super Shop. You can buy some special items here.");
+		while (true) {
+			clear();
+			print("1. Cast Speed Multiplier, 2. Upgrade Big Fish Chance, 3. Return.");
+			print("Cast Speed Multiplier: ");
+			if (variate::stime >= 10) {
+				print("    Max Level Reached");
+			} else {
+				print("    Current: " + to_string(variate::stime) + "x, After Upgrade: " + to_string(variate::stime + 1) + "x");
+				print("    Cost: $1000, Current Gold: $" + to_string(variate::money));
+			}
+			print("Big Fish Chance: ");
+			if (variate::bf >= 60) {
+				print("    Max Level Reached");
+			} else {
+				print("    Current: " + to_string(variate::bf) + "%, After Upgrade: " + to_string(variate::bf + 5) + "%");
+				print("    Cost: $1000, Current Gold: $" + to_string(variate::money));
+			}
+			char type;
+			while (true) {
+				type = getch();
+				if (type == '1') {
+					if (variate::stime >= 10) {
+						print("Max Level Reached");
+						sleept(0.5);
+						break;
+					} else if (variate::money < 1000) {
+						print(fi_mnng);
+						sleept(0.5);
+						break;
+					} else {
+						variate::money -= 1000;
+						variate::stime++;
+						print("Purchase Successful");
+						sleept(0.5);
+						break;
+					}
+				} else if (type == '2') {
+					if (variate::bf >= 60) {
+						print("Max Level Reached");
+						sleept(0.5);
+						break;
+					} else if (variate::money < 1000) {
+						print(fi_mnng);
+						sleept(0.5);
+						break;
+					} else {
+						variate::money -= 1000;
+						variate::bf += 5;
+						print("Purchase Successful");
+						sleept(0.5);
+						break;
+					}
+				} else if (type == '3') {
+					sleept(0.5);
+					return;
+				}
+			}
+		}
+		#else
 		clear();
 		printa("这里是超级商店, 可以买一些特殊的商品。");
 		while (true){
@@ -621,11 +600,16 @@ namespace shop{
 				}
 			}
 		}
+		#endif
 	}
 	inline void shop(){
 		while (true){
 			clear();
+			#ifdef EN
+			print("1. Normal Shop, 2. Super Shop, 3. Exit.");
+			#else
 			print("1.普通商店, 2.超级商店, 3.退出。");
+			#endif
 			char type;
 			while(true){
 				type = getch();
@@ -641,6 +625,5 @@ namespace shop{
 			}
 		}
 	}
-	#endif
 }
 #endif
