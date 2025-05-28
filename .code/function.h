@@ -95,16 +95,16 @@ bool isnumbt(string s, int l, int r){
 	long long num = tonum(s);
 	return num >= l && num <= r;
 }
-inline string getline(string &ans, bool b = false){
+inline string getline(string &ans, int b = 0){
 	ans = "";
 	char a = 0;
 	while(ans == ""){
 		while((a = getch()) != '\r'){
 			if(issymbol(a) || isdigit(a) || islower(a) || isupper(a)){
 				ans += a;
-				if(b){
+				if(b == 1){
 					cout << a << flush;
-				}else{
+				}else if(b == 2){
 					cout << '*' << flush;
 				}
 			}
@@ -117,7 +117,7 @@ inline string getline(string &ans, bool b = false){
 	cout << endl;
 	return ans;
 }
-inline string getlineYe(string &ans, bool b = false){
+inline string getlineYe(string &ans, int b = 0){
 	ans = "";
 	char a = 0;
 	while((a = getch()) != '\r'){
@@ -129,8 +129,10 @@ inline string getlineYe(string &ans, bool b = false){
 		}
 		if(a == 127 && ans.length()){
 			ans.pop_back();
-			if(b){
-				cout << "\b \b" << flush;
+			if(b == 1){
+				cout << a << flush;
+			}else if(b == 2){
+				cout << '*' << flush;
 			}
 		}
 	}

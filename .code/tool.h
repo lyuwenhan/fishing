@@ -863,8 +863,8 @@ namespace tool{
 		clear();
 		cout << "这里不是你该来的地方" << endl;
 		cout << "This is not the right place" << endl;
-		cout << "请输入密码或按下回车" << endl;
-		cout << "Please enter the password or press enter" << endl;
+		cout << "请输入按下回车" << endl;
+		cout << "Please press enter to exit" << endl;
 		string mi;
 		getlineYe(mi);
 		clear();
