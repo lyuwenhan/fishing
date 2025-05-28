@@ -157,7 +157,7 @@ inline void printnl(string s, double time = 0.02){
 	if(variate::speed >= 3){
 		cout << s;
 	}else{
-		#idfed EN
+		#ifdef EN
 		bool to = false;
 		#endif
         auto it = s.begin();
