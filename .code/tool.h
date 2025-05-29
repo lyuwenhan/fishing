@@ -861,10 +861,13 @@ namespace tool{
 	}
 	inline void tool(){
 		clear();
-		cout << "这里不是你该来的地方" << endl;
+		#ifdef EN
 		cout << "This is not the right place" << endl;
-		cout << "请输入按下回车" << endl;
 		cout << "Please press enter to exit" << endl;
+		#else
+		cout << "这里不是你该来的地方" << endl;
+		cout << "请输入按下回车" << endl;
+		#endif
 		string mi;
 		getlineYe(mi);
 		clear();

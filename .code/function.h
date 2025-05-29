@@ -154,7 +154,7 @@ inline void sleept(double time){
 inline void sleep2(double time){
 	usleep(1000000 * time);
 }
-inline void printnl(string s, double time = 0.02){
+inline void printnl(string s, double time = 0.02, bool eat = true){
 	cout << "\033[?25l" << flush;
 	if(variate::speed >= 3){
 		cout << s;
@@ -177,15 +177,25 @@ inline void printnl(string s, double time = 0.02){
 			to = !to;
 			#else
             cout << ch << flush;
-            sleept(time * ch.length() / variate::speed);
+			if(eat){
+				sleept(time * ch.length() / variate::speed);
+			}else{
+				sleep2(time * ch.length() / variate::speed);
+			}
 			#endif
         }
 	}
 	cout << "\033[m\033[?25h" << flush;
 }
-inline void print(string s, double time = 0.02){
-    printnl(s, time);
+inline void printnlne(string s, double time = 0.02){
+	printnl(s, time, false);
+}
+inline void print(string s, double time = 0.02, bool eat = true){
+    printnl(s, time, eat);
     cout << endl;
+}
+inline void printne(string s, double time = 0.02){
+	printnl(s, time, false);
 }
 inline void printa(string s = "", double time = 0.02){
 	print(s + (s.empty() ? "" : "    ") + press_enter_continue, time);
