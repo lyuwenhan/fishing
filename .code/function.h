@@ -170,7 +170,11 @@ inline void printnl(string s, double time = 0.02, bool eat = true){
 			#ifdef EN
 			if(to){
 				cout << ch << flush;
-				sleept(time * ch.length() / variate::speed);
+				if(eat){
+					sleept(time * ch.length() / variate::speed);
+				}else{
+					sleep2(time * ch.length() / variate::speed);
+				}
 			}else{
 				cout << ch;
 			}

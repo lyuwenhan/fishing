@@ -130,14 +130,14 @@ namespace checkpoint{
 		clear();
 		printnl(chp_login);
 		cout << endl;
-		printnl(chp_un);
+		printnlne(chp_un);
 		getline(name, 1);
 		if(!check_name(name)){
 			print(chp_invalid);
 			sleept(1);
 			return false;
 		}
-		printnl(chp_pwd);
+		printnlne(chp_pwd);
 		getline(pwd, 2);
 		variate::name = name;
 		variate::pwd = pwd;
@@ -163,9 +163,9 @@ namespace checkpoint{
 			sleept(1);
 			return false;
 		}
-		printnl(chp_pwd);
+		printnlne(chp_pwd);
 		getline(pwd, 2);
-		printnl(chp_repwd);
+		printnlne(chp_repwd);
 		getline(pwd2, 2);
 		if(pwd != pwd2){
 			print(chp_pwdng);
