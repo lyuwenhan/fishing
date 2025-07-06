@@ -54,7 +54,7 @@ namespace checkpoint{
 					str >> fi[j][i];
 				}
 			}
-			if(coin < 0 || lv < 0 || lv > variate::max_level || lv2 < 0 || lv2 > variate::max_level2 || c < 0 || bf <= 0 || bf > 100 || bf <= 0 || 
+			if(coin < 0 || lv < 0 || lv > variate::max_level || lv2 < 0 || lv2 > variate::max_level2 || c < 0 || bf <= 0 || bf > 100 || bf <= 0 ||
 			st < 1 || st > 100 || sl < 0 || sl > 100 || clean < 0 || clesb < 1 || gan < 0 || gan > 6 || aqc < 0 || ty < 0 || ro < 0 || hung < 0){
 				return false;
 			}

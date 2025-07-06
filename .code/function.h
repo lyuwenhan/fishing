@@ -18,12 +18,12 @@ using std::ostream;
 using std::to_string;
 #include"variate.h"
 pair<int, int> getConsoleSize(){
-    struct winsize ws;
-    if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == 0){
+	struct winsize ws;
+	if(ioctl(STDOUT_FILENO, TIOCGWINSZ, &ws) == 0){
 		return {ws.ws_col, ws.ws_row};
-    }else{
-        return {0, 0};
-    }
+	}else{
+		return {0, 0};
+	}
 }
 inline bool directoryExists(const char* path) {
 	struct stat info;
@@ -162,11 +162,11 @@ inline void printnl(string s, double time = 0.02, bool eat = true){
 		#ifdef EN
 		bool to = false;
 		#endif
-        auto it = s.begin();
-        while(it != s.end()){
-            auto p = it;
-            utf8::next(it, s.end());
-            string ch(p, it);
+		auto it = s.begin();
+		while(it != s.end()){
+			auto p = it;
+			utf8::next(it, s.end());
+			string ch(p, it);
 			#ifdef EN
 			if(to){
 				cout << ch << flush;
@@ -180,14 +180,14 @@ inline void printnl(string s, double time = 0.02, bool eat = true){
 			}
 			to = !to;
 			#else
-            cout << ch << flush;
+			cout << ch << flush;
 			if(eat){
 				sleept(time * ch.length() / variate::speed);
 			}else{
 				sleep2(time * ch.length() / variate::speed);
 			}
 			#endif
-        }
+		}
 	}
 	cout << "\033[m\033[?25h" << flush;
 }
@@ -195,8 +195,8 @@ inline void printnlne(string s, double time = 0.02){
 	printnl(s, time, false);
 }
 inline void print(string s, double time = 0.02, bool eat = true){
-    printnl(s, time, eat);
-    cout << endl;
+	printnl(s, time, eat);
+	cout << endl;
 }
 inline void printne(string s, double time = 0.02){
 	printnl(s, time, false);

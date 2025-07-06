@@ -92,7 +92,7 @@ namespace fishing{
 		}
 		if(wea.first == 0 || wea.first == 1){
 			if(wea.second < 2){
-				int ra = random(1, 20); 
+				int ra = random(1, 20);
 				if(ra <= 9){
 					return wea;
 				}else if(ra <= 15){
@@ -284,7 +284,7 @@ namespace fishing{
 					cout << "\033[m" << fucolor[lw] << fu[lw];
 				}else{
 					cout << "\033[m" << color[i][j] << paint[i][j];
-				}				
+				}
 			}
 			cout << endl;
 		}
@@ -490,7 +490,7 @@ namespace fishing{
 		std::memset(last, 0, sizeof(last));
 		ter_big = {0, 0};
 		la = time(0);
-		
+
 		const double hung_speed = (variate::hungry < 5 ? 3 : (variate::hungry < 10 ? 2 : (variate::hungry < 30 ? 1 : variate::hungry < 35 ? 0.8 : 0.5)));
 		cout << "\033[?25l" << flush;
 		for(int i = 0; i < 15; i++){
@@ -638,7 +638,7 @@ namespace fishing{
 		variate::gan = d;
 	}
 	void aqua(){
-		{	
+		{
 			int cnt = 0;
 			for(int i = 0; i <= 6; i++){
 				cnt += variate::aqfish_cnt[i];
