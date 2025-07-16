@@ -71,7 +71,7 @@ namespace fishing{
 	"     ___\033[33;1m|_____|\033[m_____/           \\____       ",
 	"    (                                )      ",
 	"     \\______________________________/       "}};
-	const int macnt[4] = {0, 10, 20, 40};
+	const int macnt[4] = {0, 11, 20, 40};
 	const char fu[6] = {'.', '*', ' ', ' ', ' ', ' '};
 	const string fucolor[6] = {"\033[1;34m", "\033[1;36m", "", "", "", ""};
 	pair<int, int> weather = {2, 0};
@@ -216,9 +216,15 @@ namespace fishing{
 					weapoint.pop_back();
 				}
 			}
-			if(weapoint.size() < macnt[weather.second] && random(1, 2) <= 2){
+			if(macnt[weather.second]){
 				wcg = true;
 				weapoint.push_back({0, random(0, 44)});
+			}
+			for(int i = 1; i <= macnt[weather.second] / 6 - 1 && weapoint.size() < macnt[weather.second]; i++){
+				if(weapoint.size() < macnt[weather.second] && random(1, 2) <= 1){
+					wcg = true;
+					weapoint.push_back({0, random(0, 44)});
+				}
 			}
 		}
 		int start = 0;
