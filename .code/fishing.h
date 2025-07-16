@@ -206,11 +206,9 @@ namespace fishing{
 		}
 		while(la2 > 0.2){
 			la2 -= 0.2;
-			for(int i = 0; i < weapoint.size();i++){
+			for(int i = weapoint.size() - 1; i >= 0; i--){
 				weapoint[i].first += 1;
 				wcg = true;
-			}
-			for(int i = weapoint.size() - 1; i >= 0; i--){
 				if(weapoint[i].first > 10){
 					swap(weapoint[i], weapoint[weapoint.size() - 1]);
 					weapoint.pop_back();
