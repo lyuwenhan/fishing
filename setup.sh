@@ -3,7 +3,9 @@ cd "$(dirname "$0")"
 stty -echo raw
 clear
 echo -e "loading...\r"
-if [[ " $* " == *" -EN "* ]]; then
+if [[ " $* " == *" -CN "* ]]; then
+	./main.run
+elif [[ " $* " == *" -EN "* ]]; then
 	./mainEN.run
 else
 	./main.run
