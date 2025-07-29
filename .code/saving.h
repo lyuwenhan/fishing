@@ -1,9 +1,9 @@
 #ifndef saving_defined
 #define saving_defined
 #include<random>
-#include"sha256.h"
+#include"lib/sha256.h"
 extern "C" {
-	#include "aes.c"
+	#include"lib/aes.c"
 }
 namespace saving{
 	constexpr size_t IV_SIZE = 16;

@@ -8,7 +8,7 @@
 #include<fcntl.h>
 #include<unistd.h>
 #include<termios.h>
-#include"utf8/checked.h"
+#include"lib/utf8/checked.h"
 using std::cin;
 using std::cout;
 using std::hash;
