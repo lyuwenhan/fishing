@@ -1,4 +1,6 @@
 #!/bin/bash
+now=$(stty -g)
+stty sane
 cd "$(dirname "$0")"
 stty -echo raw
 echo -e "Compiling...\r"
@@ -43,3 +45,4 @@ if [[ $zh_suc -ne 0 || $en_suc -ne 0 ]];then
 	exit 1
 fi
 echo "Compilation successful"
+stty "$now"
