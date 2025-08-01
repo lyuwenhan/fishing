@@ -5,7 +5,6 @@
 #define m_main "1.Start fishing, 2.Enter shop, 3.Setting, 4.Lucky Draw, 5.Challenging, 6.Exit."
 #define m_did "Challenge Completed"
 #define chp_suc "Load succeeded"
-#define chp_err "Checkpoint is damaged"
 #define chp_nouser "Incorrect username or password"
 #define chp_login "Login"
 #define chp_regi "Sign up"

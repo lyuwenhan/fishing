@@ -41,7 +41,7 @@ namespace checkpoint{
 		return s.str();
 	}
 	namespace decode_code{
-		inline bool decode1(string s, bool us){
+		inline bool decode1(string s){
 			long long coin, c;
 			int lv, lv2, bf, st, sl, clean, gan, aqc, aqs[7], clesb, ty, sp, fi[7][2], ro, hung;
 			istringstream str(s);
@@ -77,43 +77,36 @@ namespace checkpoint{
 			if(sp < 1){
 				sp = 1;
 			}
-			if(us){
-				variate::money = coin;
-				variate::level = lv;
-				variate::get_level = lv2;
-				variate::cnt = c;
-				variate::bf = bf;
-				variate::stime = st;
-				variate::slip = sl;
-				variate::cleaning_ball = clean;
-				variate::cleaning_sub = clesb;
-				variate::gan = gan;
-				variate::aqcnt = aqc;
-				variate::try_level = ty;
-				variate::speed = sp;
-				variate::roast = ro;
-				variate::hungry = hung;
-				for(int i = 0; i <= 6; i++){
-					variate::aqfish_cnt[i] = aqs[i];
-				}
-				for(int i = 0; i < 2; i++){
-					for(int j = 0; j < 7; j++){
-						variate::fish[j][i] = fi[j][i];
-					}
+			variate::money = coin;
+			variate::level = lv;
+			variate::get_level = lv2;
+			variate::cnt = c;
+			variate::bf = bf;
+			variate::stime = st;
+			variate::slip = sl;
+			variate::cleaning_ball = clean;
+			variate::cleaning_sub = clesb;
+			variate::gan = gan;
+			variate::aqcnt = aqc;
+			variate::try_level = ty;
+			variate::speed = sp;
+			variate::roast = ro;
+			variate::hungry = hung;
+			for(int i = 0; i <= 6; i++){
+				variate::aqfish_cnt[i] = aqs[i];
+			}
+			for(int i = 0; i < 2; i++){
+				for(int j = 0; j < 7; j++){
+					variate::fish[j][i] = fi[j][i];
 				}
 			}
 			return true;
 		}
-		inline bool decode(string code, bool ec){
-			if(decode1(code, ec)){
-				if(ec){
-					cout << chp_suc << endl;
-				}
+		inline bool decode(string code){
+			if(decode1(code)){
+				cout << chp_suc << endl;
 				return true;
 			}else{
-				if(ec){
-					cout << chp_err << endl;
-				}
 				return false;
 			}
 		}
@@ -139,14 +132,12 @@ namespace checkpoint{
 		variate::name = name;
 		variate::pwd = pwd;
 		clear();
-		if(ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, variate::pwd), false)){
-			sleept(1);
-			return decode(saving::decryptFile("checkpoint/" + name, variate::pwd), true);
-		}else{
+		bool ok;
+		if(!(ok = (ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, variate::pwd))))){
 			print(chp_nouser);
-			sleept(1);
-			return false;
 		}
+		sleept(1);
+		return ok;
 	}
 	inline bool regi(){
 		string name, pwd, pwd2;

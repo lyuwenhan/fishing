@@ -5,7 +5,6 @@
 #define m_main "1.开始钓鱼, 2.进入商店, 3.设置, 4.抽奖, 5.挑战, 6.退出, 其他输入无效。"
 #define m_did "已完成挑战"
 #define chp_suc "读取成功"
-#define chp_err "存档损坏"
 #define chp_nouser "用户名或密码错误"
 #define chp_login "登录"
 #define chp_regi "注册"
