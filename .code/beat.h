@@ -23,12 +23,12 @@ namespace beat{
 		vector<string> cnext;
 		vector<int> cnext2;
 	}
-	things[102] = be_1;
+	const things[102] = be_1;
 	int now;
 	unordered_map<char, int> m1;
 	vector<char> m2;
 	inline void setup(){
-		sleepcnt = eatcnt = temple = romar = america = headbone = e2 = s2 = 0;
+		sleepcnt = eatcnt = temple = romar = america = headbone = e2 = s2 = drafood = 0;
 		now = 0;
 		for(int i = 1; i <= 9; i++){
 			m1[i + '0'] = m2.size();
