@@ -117,9 +117,6 @@ namespace checkpoint{
 				return false;
 			}
 		}
-		inline bool decode(string code){
-			return decode(code, true);
-		}
 	}
 	using decode_code::decode;
 	inline void savechpnp(string name){
@@ -144,7 +141,7 @@ namespace checkpoint{
 		clear();
 		if(ifstream((string)"checkpoint/" + name).good() && decode(saving::decryptFile("checkpoint/" + name, variate::pwd), false)){
 			sleept(1);
-			return decode(saving::decryptFile("checkpoint/" + name, variate::pwd));
+			return decode(saving::decryptFile("checkpoint/" + name, variate::pwd), true);
 		}else{
 			print(chp_nouser);
 			sleept(1);
