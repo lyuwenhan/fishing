@@ -16,10 +16,9 @@ elif [[ "$FISH_LANG" == "EN" ]]; then
 else
 	./main.run
 fi
+stty "$now"
 if ! [ $? -eq 0 ];then
 	clear
-	stty echo cooked
 	echo "运行错误"
 	exit 1
 fi
-stty "$now"
