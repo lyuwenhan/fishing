@@ -42,6 +42,7 @@ fi
 stty echo cooked
 if [[ $zh_suc -ne 0 || $en_suc -ne 0 ]];then
 	echo "$err"
+	stty "$now"
 	exit 1
 fi
 chmod u+x setup.sh
