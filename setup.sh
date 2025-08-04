@@ -9,7 +9,7 @@ if [[ " $* " == *" -CN "* ]]; then
 	./main.run
 elif [[ " $* " == *" -EN "* ]]; then
 	./mainEN.run
-if [[ "$FISH_LANG" == "CN" ]]; then
+elif [[ "$FISH_LANG" == "CN" ]]; then
 	./main.run
 elif [[ "$FISH_LANG" == "EN" ]]; then
 	./mainEN.run
