@@ -82,6 +82,7 @@
 #define fi_mnng "Not enough money"
 #define fi_clok "Cleaning completed"
 #define fi_nwt "Please buy an aquarium before viewing"
+#define fi_wait "Estimated remaining time"
 #define press_enter_continue "(Press Enter to continue)"
 #define fun_choose {"Please choose a starting skill", "1.Delicious Bait, 2.Rare Treasures, 3.Secure Safety Rope, 4.Powerful Cleaner, 5.Popeye the Sailor, 6.Long Line for Big Fish, 7.Poor Family", "Delicious Bait:", "    Hooking speed becomes 1.5× of the original", "Rare Treasures:", "    Fish prices become 2× of the original", "Secure Safety Rope:", "    Slip-off chance is reduced from 50% to 10%", "Powerful Cleaner:", "    Start with 1 cleaner, and cleaner effectiveness is doubled", "Popeye the Sailor:", "    Casting speed changes from 1× to 2×", "Long Line for Big Fish:", "    Big fish chance changes from 20% to 40%", "Poor Family:", "    None"}
 #define fi_egg "Egg Fish\033[m, worth $"

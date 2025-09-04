@@ -17,6 +17,7 @@ using std::max;
 #include"error.h"
 #include"variate.h"
 #include"function.h"
+#include"saving.h"
 #include"checkpoint.h"
 namespace fishing{
 /*
@@ -187,7 +188,9 @@ namespace fishing{
 		fish[type].push_back(10);
 		variate::cnt++;
 	}
-	inline void draw(){
+	int lmi = 0;
+	int lma = 0;
+	inline void draw(int mi = 0, int ma = 0){
 		bool wcg = false;
 		const int now = time(0);
 		while(now - la > 10){
@@ -203,6 +206,12 @@ namespace fishing{
 				la = now - 100;
 			}
 			la += 10;
+		}
+		if(lmi != mi || lma != ma){
+			lmi = mi;
+			lma = ma;
+			wcg = true;
+			cout << "\033c\033[?25l" << flush;
 		}
 		while(la2 > 0.2){
 			la2 -= 0.2;
@@ -293,8 +302,16 @@ namespace fishing{
 			cout << endl;
 		}
 		cout << fi_allfi << variate::cnt << fi_nowwea << ty[weather.second] << wea[weather.first] << endl;
+		if(ma){
+			if(mi >= 30){
+				cout << fi_wait << ": 0.5min ~ " << (ma + 29) / 30 / 2. << "min" << endl;
+			}else{
+				cout << fi_wait << ": < " << (ma + 29) / 30 / 2. << "min" << endl;
+			}
+		}
 	}
 	void slep(double s){
+		s = (int)(s * 100 + 0.5) / 100.;
 		if(s < 0.01){
 			s = 0.01;
 		}
@@ -303,6 +320,26 @@ namespace fishing{
 			draw();
 			s -= 0.1;
 			la2 += 0.1;
+		}
+		sleept(s);
+		draw();
+		la2 += s;
+	}
+	void wait(double s){
+		s = (int)(s * 100 + 0.5) / 100.;
+		int mi = variate::mintime[variate::level] * 10, ma = variate::maxtime[variate::level] * 10;
+		if(s < 0.01){
+			s = 0.01;
+		}
+		while(s > 0.1){
+			sleept(0.1);
+			if(mi > 0){
+				mi -= 1;
+			}
+			ma -= 1;
+			s -= 0.1;
+			la2 += 0.1;
+			draw(mi / 10, ma / 10);
 		}
 		sleept(s);
 		draw();
@@ -550,7 +587,7 @@ namespace fishing{
 		if(weather.first == 1){
 			stime = max(0, stime + 5 * weather.second);
 		}
-		slep(stime);
+		wait(stime);
 		color[11][0] = fish_color[type];
 		paint[11][0] = 'O';
 		slep(0.5 * (is_big + 1) / variate::stime);
