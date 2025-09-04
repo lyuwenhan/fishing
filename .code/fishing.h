@@ -85,6 +85,8 @@ namespace fishing{
 	int dirty = 0;
 	const string fish_name[7] = fi_type;
 	const string fish_color[7] = {"\033[1;31m", "\033[1;37m", "\033[1;35m", "\033[1;34m", "\033[1;33m", "\033[1;32m", "\033[1;36m"};
+	int now_status = 0;
+	const string statuses[5] = fi_statuses;
 	const int fish_add[7] = {0, 1, 2, 5, 10, 50, 100};
 	pair<int, int> ter_big;
 	pair<int, int> change(pair<int, int>wea){
@@ -190,6 +192,7 @@ namespace fishing{
 	}
 	int lmi = 0;
 	int lma = 0;
+	int lst = 0;
 	inline void draw(int mi = 0, int ma = 0){
 		bool wcg = false, wcgd = false;
 		const int now = time(0);
@@ -207,11 +210,17 @@ namespace fishing{
 			}
 			la += 10;
 		}
+		bool need_cl = false;
 		if(lmi != mi || lma != ma){
 			lmi = mi;
 			lma = ma;
 			wcg = true;
-			cout << "\033c\033[?25l" << flush;
+			need_cl = true;
+		}
+		if(lst != now_status){
+			lst = now_status;
+			wcg = true;
+			need_cl = true;
 		}
 		while(la2 > 0.2){
 			la2 -= 0.2;
@@ -236,10 +245,17 @@ namespace fishing{
 		}
 		int start = 0;
 		auto nowsize = getConsoleSize();
-		const bool size_ok1 = nowsize.second < 19, size_ok2 = nowsize.first < 44;
+		const bool size_ok1 = nowsize.second < 19, size_ok2 = nowsize.first < 51;
+		if(std::memcmp(paint, last, sizeof(paint))){
+			wcgd = true;
+			std::memcpy(last, paint, sizeof(paint));
+		}
+		if(ter_big != nowsize){
+			ter_big = nowsize;
+			need_cl = true;
+		}
 		if(size_ok1 || size_ok2){
-			if(ter_big != nowsize){
-				ter_big = nowsize;
+			if(need_cl){
 				cout << "\033c\033[?25l" << flush;
 			}else if(wcg){
 				cout << "\033[H" << flush;
@@ -255,15 +271,12 @@ namespace fishing{
 				cout << fi_sn << nowsize.first << fi_w << endl;
 			}
 		}else{
-			if(ter_big != nowsize){
-				ter_big = nowsize;
+			if(need_cl){
 				cout << "\033c\033[?25l" << flush;
-			}else{
-				if(!wcg && !wcgd && !std::memcmp(paint, last, sizeof(paint))){
-					return;
-				}
-				std::memcpy(last, paint, sizeof(paint));
+			}else if(wcg || wcgd){
 				cout << "\033[H" << flush;
+			}else{
+				return;
 			}
 			if(weather.first == 3 || weather.first == 4 || weather.first == 2){
 				start = 4;
@@ -289,6 +302,7 @@ namespace fishing{
 				cout << endl;
 			}
 		}
+		cout << fi_status << statuses[now_status] << endl;
 		cout << fi_allfi << variate::cnt << fi_nowwea << ty[weather.second] << wea[weather.first] << endl;
 		if(ma){
 			if(mi){
@@ -324,13 +338,15 @@ namespace fishing{
 			if(mi > 0){
 				mi -= 1;
 			}
-			ma -= 1;
+			if(ma > 10){
+				ma -= 1;
+			}
 			s -= 0.1;
 			la2 += 0.1;
-			draw((mi - 10) / 300, (ma + 290) / 300);
+			draw((mi - 10) / 300, max((ma + 290) / 300, 1));
 		}
 		sleept(s);
-		draw();
+			draw((mi - 10) / 300, max((ma + 290) / 300, 1));
 		la2 += s;
 	}
 	inline void fishing(bool is_big, int type){
@@ -437,6 +453,7 @@ namespace fishing{
 		paint[11][19] = '^';
 		paint[10][19] = 'O';
 		slep(0.3 * hung_speed * (is_big + 1) / variate::stime);
+		now_status = 4;
 		color[11][19] = "\033[1;34m";
 		paint[11][19] = '~';
 		color[10][19] = "";
@@ -521,6 +538,7 @@ namespace fishing{
 		la = time(0);
 
 		const double hung_speed = (variate::hungry < 5 ? 3 : (variate::hungry < 10 ? 2 : (variate::hungry < 30 ? 1 : variate::hungry < 35 ? 0.8 : 0.5)));
+		now_status = 0;
 		cout << "\033[?25l" << flush;
 		for(int i = 0; i < 15; i++){
 			for(int j = 0; j < 45; j++){
@@ -575,7 +593,9 @@ namespace fishing{
 		if(weather.first == 1){
 			stime = max(0, stime + 5 * weather.second);
 		}
+		now_status = 1;
 		wait(stime);
+		now_status = 2;
 		color[11][0] = fish_color[type];
 		paint[11][0] = 'O';
 		slep(0.5 * (is_big + 1) / variate::stime);
@@ -584,6 +604,9 @@ namespace fishing{
 		paint[11][1] = 'O';
 		slep(0.5 * (is_big + 1) / variate::stime);
 		for(int i = 2; i <= 19; i++){
+			if(i == 19){
+				now_status = 3;
+			}
 			color[11][i - 2] = "\033[1;34m";
 			paint[11][i - 2] = '~';
 			color[11][i] = fish_color[type];

@@ -25,7 +25,7 @@
 #define fi_price "鱼\033[m, 价值$"
 #define fi_inaqua "是否放入水族馆"
 #define fi_shi "屏幕高度需至少为19行"
-#define fi_sw "屏幕宽度需至少为44列"
+#define fi_sw "屏幕宽度需至少为51列"
 #define fi_sn "当前为 "
 #define fi_hi " 行"
 #define fi_w " 列"
@@ -83,9 +83,11 @@
 #define fi_clok "清理完成"
 #define fi_nwt "请在购买水族馆后在来查看"
 #define fi_wait "预计剩余时间"
+#define fi_egg "鸡蛋鱼\033[m, 价值$"
+#define fi_status "当前状态: "
+#define fi_statuses {"抛竿中", "等待中", "鱼正在靠近", "收杆中", "已脱钩"}
 #define press_enter_continue "(按Enter继续)"
 #define fun_choose {"请选择开局技能", "1.美味诱饵, 2.稀世珍宝, 3.牢靠安全绳, 4.强效清洁剂, 5.大力水手, 6.放长线钓大鱼, 7.孤苦人家", "美味诱饵:", "    上钩速度变为原先的1.5倍", "稀世珍宝:", "    鱼的价格变为原先的2倍", "牢靠安全绳:", "    脱钩概率由50%变为10%", "强效清洁剂:", "    初始获得1个清洁剂, 并且清洁剂效果翻倍", "大力水手:", "    甩杆倍速由1倍变为2倍", "放长线钓大鱼:", "    大鱼概率由20%变为40%", "孤苦人家:", "    无"}
-#define fi_egg "鸡蛋鱼\033[m, 价值$"
 #define st_speed {"", "慢速", "普通", "急速"}
 #define st_speeds "1.慢速, 2.普通, 3.急速"
 #define st_m "1.更改输出速度, 2.退出"
