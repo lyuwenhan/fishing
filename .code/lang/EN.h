@@ -19,7 +19,7 @@
 #define fi_wea {"Rain", "Snow", "Sunny     ", "Overcast  ", "Cloudy    ", "Fog       "}
 #define fi_big {"", "   Light ", "Moderate ", "   Heavy "}
 #define fi_type {"Rotten ", "Common ", "Amethyst ", "L.Lazuli ", "Gold ", "Emerald ", "Diamond "}
-#define fi_got "You caught a(n)"
+#define fi_got "You caught a(n) "
 #define fi_bf "big"
 #define fi_eaten "fish\033[m. You ate it because you were hungry"
 #define fi_price "fish\033[m, worth $"
