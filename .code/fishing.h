@@ -237,7 +237,14 @@ namespace fishing{
 		int start = 0;
 		auto nowsize = getConsoleSize();
 		if(nowsize.second < 18 || nowsize.first < 44){
-			cout << "\033c\033[?25l" << flush;
+			if(ter_big != nowsize){
+				ter_big = nowsize;
+				cout << "\033c\033[?25l" << flush;
+			}else if(wcg){
+				cout << "\033[H" << flush;
+			}else{
+				return;
+			}
 			if(nowsize.second < 18){
 				cout << fi_shi << endl;
 				cout << fi_sn << nowsize.second << fi_hi << endl;
@@ -246,60 +253,40 @@ namespace fishing{
 				cout << fi_sw << endl;
 				cout << fi_sn << nowsize.first << fi_w << endl;
 			}
-			while(nowsize.second < 18 || nowsize.first < 44){
-				auto newsize = getConsoleSize();
-				if(newsize.second >= 18 && newsize.first >= 44){
-					nowsize = newsize;
-					break;
-				}
-				if(newsize != nowsize){
-					cout << "\033c\033[?25l" << flush;
-					if(nowsize.second < 18){
-						cout << fi_shi << endl;
-						cout << fi_sn << nowsize.second << fi_hi << endl;
-					}
-					if(nowsize.first < 44){
-						cout << fi_sw << endl;
-						cout << fi_sn << nowsize.first << fi_w << endl;
-					}
-				}
-				nowsize = newsize;
-				sleept(0.1);
-			}
-			cout << "\033c\033[?25l" << flush;
-		}
-		if(ter_big != nowsize){
-			ter_big = nowsize;
-			cout << "\033c\033[?25l" << flush;
 		}else{
-			if(!wcg && !std::memcmp(paint, last, sizeof(paint))){
-				return;
+			if(ter_big != nowsize){
+				ter_big = nowsize;
+				cout << "\033c\033[?25l" << flush;
+			}else{
+				if(!wcg && !std::memcmp(paint, last, sizeof(paint))){
+					return;
+				}
+				std::memcpy(last, paint, sizeof(paint));
+				cout << "\033[H" << flush;
 			}
-			std::memcpy(last, paint, sizeof(paint));
-			cout << "\033[H" << flush;
-		}
-		if(weather.first == 3 || weather.first == 4 || weather.first == 2){
-			start = 4;
-			for(int i = 0; i < 4; i++){
-				cout << weatherpcr[weather.first - 2][i] << endl;
+			if(weather.first == 3 || weather.first == 4 || weather.first == 2){
+				start = 4;
+				for(int i = 0; i < 4; i++){
+					cout << weatherpcr[weather.first - 2][i] << endl;
+				}
 			}
-		}
-		for(int i = start; i < 15; i++){
-			for(int j = 0; j < 45; j++){
-				bool b = false;
-				for(auto p : weapoint){
-					if(p.first == i && p.second == j){
-						b = true;
-						break;
+			for(int i = start; i < 15; i++){
+				for(int j = 0; j < 45; j++){
+					bool b = false;
+					for(auto p : weapoint){
+						if(p.first == i && p.second == j){
+							b = true;
+							break;
+						}
+					}
+					if(paint[i][j] == ' ' && b){
+						cout << "\033[m" << fucolor[lw] << fu[lw];
+					}else{
+						cout << "\033[m" << color[i][j] << paint[i][j];
 					}
 				}
-				if(paint[i][j] == ' ' && b){
-					cout << "\033[m" << fucolor[lw] << fu[lw];
-				}else{
-					cout << "\033[m" << color[i][j] << paint[i][j];
-				}
+				cout << endl;
 			}
-			cout << endl;
 		}
 		cout << fi_allfi << variate::cnt << fi_nowwea << ty[weather.second] << wea[weather.first] << endl;
 		if(ma){
