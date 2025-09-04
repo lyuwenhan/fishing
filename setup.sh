@@ -16,8 +16,9 @@ elif [[ "$FISH_LANG" == "EN" ]]; then
 else
 	./main.run
 fi
+ok=$?
 stty "$now"
-if ! [ $? -eq 0 ];then
+if ! [ $ok -eq 0 ];then
 	clear
 	echo "运行错误"
 	exit 1
