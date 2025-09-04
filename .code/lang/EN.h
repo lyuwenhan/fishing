@@ -24,7 +24,7 @@
 #define fi_eaten "fish\033[m. You ate it because you were hungry"
 #define fi_price "fish\033[m, worth $"
 #define fi_inaqua "Do you want to put it into the aquarium?"
-#define fi_shi "Screen height must be at least 18 rows"
+#define fi_shi "Screen height must be at least 19 rows"
 #define fi_sw "Screen width must be at least 44 columns"
 #define fi_sn "Current size: "
 #define fi_hi " rows"

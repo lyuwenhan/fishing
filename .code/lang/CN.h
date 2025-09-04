@@ -24,7 +24,7 @@
 #define fi_eaten "鱼\033[m, 因饥饿已食用"
 #define fi_price "鱼\033[m, 价值$"
 #define fi_inaqua "是否放入水族馆"
-#define fi_shi "屏幕高度需至少为18行"
+#define fi_shi "屏幕高度需至少为19行"
 #define fi_sw "屏幕宽度需至少为44列"
 #define fi_sn "当前为 "
 #define fi_hi " 行"

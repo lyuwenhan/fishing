@@ -191,7 +191,7 @@ namespace fishing{
 	int lmi = 0;
 	int lma = 0;
 	inline void draw(int mi = 0, int ma = 0){
-		bool wcg = false;
+		bool wcg = false, wcgd = false;
 		const int now = time(0);
 		while(now - la > 10){
 			auto nweather = change(weather);
@@ -217,26 +217,27 @@ namespace fishing{
 			la2 -= 0.2;
 			for(int i = weapoint.size() - 1; i >= 0; i--){
 				weapoint[i].first += 1;
-				wcg = true;
+				wcgd = true;
 				if(weapoint[i].first > 10){
 					swap(weapoint[i], weapoint[weapoint.size() - 1]);
 					weapoint.pop_back();
 				}
 			}
 			if(macnt[weather.second]){
-				wcg = true;
+				wcgd = true;
 				weapoint.push_back({0, random(0, 44)});
 			}
 			for(int i = 1; i <= macnt[weather.second] / 6 - 1 && weapoint.size() < macnt[weather.second]; i++){
 				if(weapoint.size() < macnt[weather.second] && random(1, 2) <= 1){
-					wcg = true;
+					wcgd = true;
 					weapoint.push_back({0, random(0, 44)});
 				}
 			}
 		}
 		int start = 0;
 		auto nowsize = getConsoleSize();
-		if(nowsize.second < 18 || nowsize.first < 44){
+		const bool size_ok1 = nowsize.second < 19, size_ok2 = nowsize.first < 44;
+		if(size_ok1 || size_ok2){
 			if(ter_big != nowsize){
 				ter_big = nowsize;
 				cout << "\033c\033[?25l" << flush;
@@ -245,11 +246,11 @@ namespace fishing{
 			}else{
 				return;
 			}
-			if(nowsize.second < 18){
+			if(size_ok1){
 				cout << fi_shi << endl;
 				cout << fi_sn << nowsize.second << fi_hi << endl;
 			}
-			if(nowsize.first < 44){
+			if(size_ok2){
 				cout << fi_sw << endl;
 				cout << fi_sn << nowsize.first << fi_w << endl;
 			}
@@ -258,7 +259,7 @@ namespace fishing{
 				ter_big = nowsize;
 				cout << "\033c\033[?25l" << flush;
 			}else{
-				if(!wcg && !std::memcmp(paint, last, sizeof(paint))){
+				if(!wcg && !wcgd && !std::memcmp(paint, last, sizeof(paint))){
 					return;
 				}
 				std::memcpy(last, paint, sizeof(paint));
@@ -290,10 +291,10 @@ namespace fishing{
 		}
 		cout << fi_allfi << variate::cnt << fi_nowwea << ty[weather.second] << wea[weather.first] << endl;
 		if(ma){
-			if(mi >= 30){
-				cout << fi_wait << ": 0.5 min ~ " << (ma + 29) / 30 / 2. << " min" << endl;
+			if(mi){
+				cout << fi_wait << ": 0.5 min ~ " << ma / 2. << " min" << endl;
 			}else{
-				cout << fi_wait << ": < " << (ma + 29) / 30 / 2. << " min" << endl;
+				cout << fi_wait << ": < " << ma / 2. << " min" << endl;
 			}
 		}
 	}
@@ -326,7 +327,7 @@ namespace fishing{
 			ma -= 1;
 			s -= 0.1;
 			la2 += 0.1;
-			draw(mi / 10, ma / 10);
+			draw((mi - 10) / 300, (ma + 290) / 300);
 		}
 		sleept(s);
 		draw();
