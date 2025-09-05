@@ -20,14 +20,17 @@ namespace spin{
 				if(c == '1'){
 					if(variate::cnt < 100 && variate::money < 1000){
 						print(sp_7);
+						sleept(1);
 						break;
 					}
 					if(variate::cnt < 100){
 						print(sp_8);
+						sleept(1);
 						break;
 					}
 					if(variate::money < 1000){
 						print(sp_9);
+						sleept(1);
 						break;
 					}
 
