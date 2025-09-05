@@ -306,7 +306,7 @@ namespace fishing{
 		cout << fi_allfi << variate::cnt << fi_nowwea << ty[weather.second] << wea[weather.first] << endl;
 		if(ma){
 			if(mi){
-				cout << fi_wait << ": 0.5 min ~ " << ma / 2. << " min" << endl;
+				cout << fi_wait << ": " << mi / 2. << " min ~ " << ma / 2. << " min" << endl;
 			}else{
 				cout << fi_wait << ": < " << ma / 2. << " min" << endl;
 			}
