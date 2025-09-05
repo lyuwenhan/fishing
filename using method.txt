@@ -1,7 +1,7 @@
 关于使用：
-在开始前，先运行 chmod u+x *.sh 添加执行权限，然后运行 ./ready.sh 进行编译（只需执行一次）。
+在开始前，先运行 chmod u+x *.sh 添加执行权限，然后运行 ./ready.sh -A 进行编译（只需执行一次）。
 编译完成后，使用 ./setup.sh 开始游玩。
 
 Fishing Usage:
-Before starting, run chmod u+x *.sh to add execution permissions, then run ./ready.sh to compile the program (this only needs to be done once).
+Before starting, run chmod u+x *.sh to add execution permissions, then run ./ready.sh -A to compile the program (this only needs to be done once).
 After compilation is complete, use ./setup.sh to start playing.
