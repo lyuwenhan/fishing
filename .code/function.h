@@ -218,6 +218,25 @@ inline int random(int l, int r){
 }
 inline void choose(){
 	clear();
+	cout << "请选择输出速度" << endl << st_speeds << endl;
+	variate::speed = 1;
+	print("这个是慢速");
+	printa("test test test test test test test test test test test test test");
+	variate::speed = 2;
+	print("这个是普通速度");
+	printa("test test test test test test test test test test test test test");
+	variate::speed = 3;
+	print("这个是急速");
+	print("test test test test test test test test test test test test test");
+	variate::speed = 2;
+	while(true){
+		char c = getch();
+		if(c >= '1' && c <= '3'){
+			variate::speed = c - '0';
+			break;
+		}
+	}
+	clear();
 	for(string i : vector<string>(fun_choose)){
 		print(i);
 	}

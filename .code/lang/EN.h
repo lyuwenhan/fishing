@@ -89,8 +89,12 @@
 #define fi_statuses {"Casting the rod", "Waiting", "Fish approaching", "Reeling in", "Fish got off"}
 #define press_enter_continue "(Press Enter to continue)"
 #define fun_choose {"Please choose a starting skill", "1.Delicious Bait, 2.Rare Treasures, 3.Secure Safety Rope, 4.Powerful Cleaner, 5.Popeye the Sailor, 6.Long Line for Big Fish, 7.Poor Family", "Delicious Bait:", "    Hooking speed becomes 1.5× of the original", "Rare Treasures:", "    Fish prices become 2× of the original", "Secure Safety Rope:", "    Slip-off chance is reduced from 50% to 10%", "Powerful Cleaner:", "    Start with 1 cleaner, and cleaner effectiveness is doubled", "Popeye the Sailor:", "    Casting speed changes from 1× to 2×", "Long Line for Big Fish:", "    Big fish chance changes from 20% to 40%", "Poor Family:", "    None"}
-#define st_speed {"", "Slow", "Normal", "Fast"}
-#define st_speeds "1.Slow, 2.Normal, 3.Fast"
+#define fun_schoose "Please choose your output speed"
+#define fun_s1 "This is Slow Mode"
+#define fun_s2 "This is Normal Mode"
+#define fun_s3 "This is Fast Mode"
+#define st_speed {"", "Slow Mode", "Normal Mode", "Fast Mode"}
+#define st_speeds "1.Slow Mode, 2.Normal Mode, 3.Fast Mode"
 #define st_m "1.Edit output speed, 2.Exit"
 #define st_m2 "Current output speed: "
 #define pk_in "Do you want to enter parkour mode?"
