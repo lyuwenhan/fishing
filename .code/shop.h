@@ -142,7 +142,7 @@ namespace shop{
 			#endif
 		}else{
 			#ifdef EN
-			print("    Current Capacity: " + to_string(variate::aqcnt) + ", After Upgrade: " + to_string(variate::aqcnt + 2));
+			print("    Current Capacity: " + to_string(variate::aqcnt) + ", After Upgrade: " + to_string(variate::aqcnt + 2) + "");
 			print("    Cost: $" + to_string((variate::aqcnt + 2) * 100) + ", Current Gold: $" + to_string(variate::money));
 			#else
 			print("    当前水族馆容量: " + to_string(variate::aqcnt) + "只, 升级后水族馆容量: " + to_string(variate::aqcnt + 2) + "只");
@@ -540,7 +540,7 @@ namespace shop{
 				#endif
 			}else{
 				#ifdef EN
-				cout << "    Current Capacity: " << to_string(variate::aqcnt) << ", After Upgrade: " << to_string(variate::aqcnt + 2) << endl;
+				cout << "    Current Capacity: " << to_string(variate::aqcnt) << ", After Upgrade: " << to_string(variate::aqcnt + 2) << "" << endl;
 				cout << "    Cost: $" << to_string((variate::aqcnt + 2) * 100) << ", Current Gold: $" << to_string(variate::money) << endl;
 				#else
 				cout << "    当前水族馆容量: " << to_string(variate::aqcnt) << "只, 升级后水族馆容量: " << to_string(variate::aqcnt + 2) << "只" << endl;
@@ -594,7 +594,6 @@ namespace shop{
 		print("1. Cast Speed Multiplier, 2. Upgrade Big Fish Chance, 3. Return.");
 		print("Cast Speed Multiplier: ");
 		#else
-		clear();
 		printa("这里是超级商店, 可以买一些特殊的商品。");
 		clear();
 		print("1.甩杆倍速, 2.升级大鱼概率, 3.返回。");
@@ -611,7 +610,7 @@ namespace shop{
 			print("    Current: " + to_string(variate::stime) + "x, After Upgrade: " + to_string(variate::stime + 1) + "x");
 			print("    Cost: $1000, Current Gold: $" + to_string(variate::money));
 			#else
-			print("    当前倍速: " + to_string(variate::stime) + ", 升级后游戏倍速: " + to_string(variate::stime + 1));
+			print("    当前倍速: " + to_string(variate::stime) + "倍, 升级后游戏倍速: " + to_string(variate::stime + 1) + "倍");
 			print("    升级花费: $1000, 当前金币数量: $" + to_string(variate::money));
 			#endif
 		}
@@ -631,7 +630,7 @@ namespace shop{
 			print("    Current: " + to_string(variate::bf) + "%, After Upgrade: " + to_string(variate::bf + 5) + "%");
 			print("    Cost: $1000, Current Gold: $" + to_string(variate::money));
 			#else
-			print("    当前大鱼概率: " + to_string(variate::bf) + ", 升级后大鱼概率" + to_string(variate::bf + 5) + "%");
+			print("    当前大鱼概率: " + to_string(variate::bf) + "%, 升级后大鱼概率" + to_string(variate::bf + 5) + "%");
 			print("    升级花费: $1000, 当前金币数量: $" + to_string(variate::money));
 			#endif
 		}
@@ -691,12 +690,11 @@ namespace shop{
 					return;
 				}
 			}
-			#ifdef EN
 			clear();
+			#ifdef EN
 			cout << "1. Cast Speed Multiplier, 2. Upgrade Big Fish Chance, 3. Return." << endl;
 			cout << "Cast Speed Multiplier: " << endl;
 			#else
-			clear();
 			cout << "1.甩杆倍速, 2.升级大鱼概率, 3.返回。" << endl;
 			cout << "甩杆倍速: " << endl;
 			#endif
@@ -711,7 +709,7 @@ namespace shop{
 				cout << "    Current: " + to_string(variate::stime) + "x, After Upgrade: " + to_string(variate::stime + 1) + "x" << endl;
 				cout << "    Cost: $1000, Current Gold: $" + to_string(variate::money) << endl;
 				#else
-				cout << "    当前倍速: " + to_string(variate::stime) + ", 升级后游戏倍速: " + to_string(variate::stime + 1) << endl;
+				cout << "    当前倍速: " + to_string(variate::stime) + "倍, 升级后游戏倍速: " + to_string(variate::stime + 1) + "倍" << endl;
 				cout << "    升级花费: $1000, 当前金币数量: $" + to_string(variate::money) << endl;
 				#endif
 			}
@@ -731,7 +729,7 @@ namespace shop{
 				cout << "    Current: " + to_string(variate::bf) + "%, After Upgrade: " + to_string(variate::bf + 5) + "%" << endl;
 				cout << "    Cost: $1000, Current Gold: $" + to_string(variate::money) << endl;
 				#else
-				cout << "    当前大鱼概率: " + to_string(variate::bf) + ", 升级后大鱼概率" + to_string(variate::bf + 5) << endl;
+				cout << "    当前大鱼概率: " + to_string(variate::bf) + ", 升级后大鱼概率" + to_string(variate::bf + 5) + "%" << endl;
 				cout << "    升级花费: $1000, 当前金币数量: $" + to_string(variate::money) << endl;
 				#endif
 			}
