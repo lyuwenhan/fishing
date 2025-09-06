@@ -84,6 +84,7 @@
 #define fi_nwt "请在购买水族馆后在来查看"
 #define fi_wait "预计剩余时间"
 #define fi_egg "鸡蛋鱼\033[m, 价值$"
+#define fi_fish(big, type) ((type) + (big))
 #define fi_status "当前状态: "
 #define fi_statuses {"抛竿中", "等待中", "鱼正在靠近", "收杆中", "已脱钩"}
 #define press_enter_continue "(按Enter继续)"

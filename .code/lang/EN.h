@@ -20,7 +20,7 @@
 #define fi_big {"", "   Light ", "Moderate ", "   Heavy "}
 #define fi_type {"Rotten ", "Common ", "Amethyst ", "L.Lazuli ", "Gold ", "Emerald ", "Diamond "}
 #define fi_got "You caught a(n) "
-#define fi_bf "big"
+#define fi_bf "Big "
 #define fi_eaten "fish\033[m. You ate it because you were hungry"
 #define fi_price "fish\033[m, worth $"
 #define fi_inaqua "Do you want to put it into the aquarium?"
@@ -83,7 +83,8 @@
 #define fi_clok "Cleaning completed"
 #define fi_nwt "Please buy an aquarium before viewing"
 #define fi_wait "Estimated remaining time"
-#define fi_egg "Egg Fish\033[m, worth $"
+#define fi_egg "Egg Fish (Big Gold fish)\033[m, worth $"
+#define fi_fish(big, type) ((big) + (type))
 #define fi_status "Current Status: "
 #define fi_statuses {"Casting the rod", "Waiting", "Fish approaching", "Reeling in", "Fish got off"}
 #define press_enter_continue "(Press Enter to continue)"

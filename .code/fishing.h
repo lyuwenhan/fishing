@@ -158,16 +158,12 @@ namespace fishing{
 			return;
 		}
 		int pri = gr(variate::get_level, (is_big + 1) * fish_add[type]);
-		#ifndef EN
 		if(type == 4 && is_big){
 			clear();
 			printa((string)fi_got + fish_color[type] + fi_egg + to_string(pri));
 		}else{
-		#endif
-			printa((string)fi_got + fish_color[type] + fish_name[type] + (is_big ? fi_bf : "") + fi_price + to_string(pri));
-		#ifndef EN
+			printa((string)fi_got + fish_color[type] + fi_fish((is_big ? fi_bf : ""), fish_name[type]) + fi_price + to_string(pri));
 		}
-		#endif
 		int cnt = 0;
 		for(int i = 0; i <= 6; i++){
 			cnt += variate::aqfish_cnt[i];
@@ -330,7 +326,7 @@ namespace fishing{
 	void wait(double s){
 		s = (int)(s * 100 + 0.5) / 100.;
 		int mi = variate::mintime[variate::level] * 10, ma = variate::maxtime[variate::level] * 10;
-		if(s < 0.01){
+		if(s && s < 0.01){
 			s = 0.01;
 		}
 		while(s > 0.1){
@@ -345,8 +341,10 @@ namespace fishing{
 			la2 += 0.1;
 			draw((mi - 10) / 300, max((ma + 290) / 300, 1));
 		}
-		sleept(s);
+		if(s){
+			sleept(s);
 			draw((mi - 10) / 300, max((ma + 290) / 300, 1));
+		}
 		la2 += s;
 	}
 	inline void fishing(bool is_big, int type){
