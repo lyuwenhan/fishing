@@ -218,15 +218,15 @@ inline int random(int l, int r){
 }
 inline void choose(){
 	clear();
-	cout << "请选择输出速度" << endl << st_speeds << endl;
+	cout << fun_schoose << endl << st_speeds << endl;
 	variate::speed = 1;
-	print("这个是慢速");
+	print(fun_s1);
 	printa("test test test test test test test test test test test test test");
 	variate::speed = 2;
-	print("这个是普通速度");
+	print(fun_s2);
 	printa("test test test test test test test test test test test test test");
 	variate::speed = 3;
-	print("这个是急速");
+	print(fun_s3);
 	print("test test test test test test test test test test test test test");
 	variate::speed = 2;
 	while(true){
