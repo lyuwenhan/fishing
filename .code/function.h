@@ -161,9 +161,6 @@ inline void sleept(double time){
 	usleep(1000000 * time);
 	getch2s();
 }
-inline void sleeptne(double time){
-	usleep(1000000 * time);
-}
 inline void sleep2(double time){
 	usleep(1000000 * time);
 }
