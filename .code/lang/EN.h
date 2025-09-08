@@ -24,7 +24,7 @@
 #define fi_eaten "fish\033[m. You ate it because you were hungry"
 #define fi_price "fish\033[m, worth $"
 #define fi_inaqua "Do you want to put it into the aquarium?"
-#define fi_shi "Screen height must be at least 19 rows"
+#define fi_shi "Screen height must be at least 20 rows"
 #define fi_sw "Screen width must be at least 51 columns"
 #define fi_sn "Current size: "
 #define fi_hi " rows"
@@ -87,6 +87,8 @@
 #define fi_fish(big, type) ((big) + (type))
 #define fi_status "Current Status: "
 #define fi_statuses {"Casting the rod", "Waiting", "Fish approaching", "Reeling in", "Fish got off"}
+#define fi_si "Press E to enter minimal mode"
+#define fi_nsi "Press E exit minimal mode"
 #define press_enter_continue "(Press Enter to continue)"
 #define fun_choose {"Please choose a starting skill", "1.Delicious Bait, 2.Rare Treasures, 3.Secure Safety Rope, 4.Powerful Cleaner, 5.Popeye the Sailor, 6.Long Line for Big Fish, 7.Poor Family", "Delicious Bait:", "    Hooking speed becomes 1.5× of the original", "Rare Treasures:", "    Fish prices become 2× of the original", "Secure Safety Rope:", "    Slip-off chance is reduced from 50% to 10%", "Powerful Cleaner:", "    Start with 1 cleaner, and cleaner effectiveness is doubled", "Popeye the Sailor:", "    Casting speed changes from 1× to 2×", "Long Line for Big Fish:", "    Big fish chance changes from 20% to 40%", "Poor Family:", "    None"}
 #define fun_schoose "Please choose your output speed"

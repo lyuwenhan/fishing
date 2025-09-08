@@ -189,7 +189,10 @@ namespace fishing{
 	int lmi = 0;
 	int lma = 0;
 	int lst = 0;
+	bool simple = false;
+	bool swp = false;
 	inline void draw(int mi = 0, int ma = 0){
+		simple = (simple != swp);
 		bool wcg = false, wcgd = false;
 		const int now = time(0);
 		while(now - la > 10){
@@ -206,7 +209,7 @@ namespace fishing{
 			}
 			la += 10;
 		}
-		bool need_cl = false;
+		bool need_cl = swp;
 		if(lmi != mi || lma != ma){
 			lmi = mi;
 			lma = ma;
@@ -241,7 +244,7 @@ namespace fishing{
 		}
 		int start = 0;
 		auto nowsize = getConsoleSize();
-		const bool size_ok1 = nowsize.second < 19, size_ok2 = nowsize.first < 51;
+		const bool size_ok1 = nowsize.second < 20, size_ok2 = nowsize.first < 51;
 		if(std::memcmp(paint, last, sizeof(paint))){
 			wcgd = true;
 			std::memcpy(last, paint, sizeof(paint));
@@ -250,21 +253,23 @@ namespace fishing{
 			ter_big = nowsize;
 			need_cl = true;
 		}
-		if(size_ok1 || size_ok2){
+		if(simple || size_ok1 || size_ok2){
 			if(need_cl){
 				cout << "\033c\033[?25l" << flush;
-			}else if(wcg){
+			}else if(simple || wcg){
 				cout << "\033[H" << flush;
 			}else{
 				return;
 			}
-			if(size_ok1){
-				cout << fi_shi << endl;
-				cout << fi_sn << nowsize.second << fi_hi << endl;
-			}
-			if(size_ok2){
-				cout << fi_sw << endl;
-				cout << fi_sn << nowsize.first << fi_w << endl;
+			if(!simple){
+				if(size_ok1){
+					cout << fi_shi << endl;
+					cout << fi_sn << nowsize.second << fi_hi << endl;
+				}
+				if(size_ok2){
+					cout << fi_sw << endl;
+					cout << fi_sn << nowsize.first << fi_w << endl;
+				}
 			}
 		}else{
 			if(need_cl){
@@ -307,6 +312,16 @@ namespace fishing{
 				cout << fi_wait << ": < " << ma / 2. << " min" << endl;
 			}
 		}
+		cout << (simple ? fi_si : fi_nsi) << endl;
+		swp = false;
+	}
+	void sleepck(double s){
+		for(char c : getch2s()){
+			if(c == 'e'){
+				swp = !swp;
+			}
+		}
+		sleep2(s);
 	}
 	void slep(double s){
 		s = (int)(s * 100 + 0.5) / 100.;
@@ -314,12 +329,12 @@ namespace fishing{
 			s = 0.01;
 		}
 		while(s > 0.1){
-			sleept(0.1);
+			sleepck(0.1);
 			draw();
 			s -= 0.1;
 			la2 += 0.1;
 		}
-		sleept(s);
+		sleepck(s);
 		draw();
 		la2 += s;
 	}
@@ -330,7 +345,7 @@ namespace fishing{
 			s = 0.01;
 		}
 		while(s > 0.1){
-			sleept(0.1);
+			sleepck(0.1);
 			if(mi > 0){
 				mi -= 1;
 			}
@@ -342,7 +357,7 @@ namespace fishing{
 			draw((mi - 10) / 300, max((ma + 290) / 300, 1));
 		}
 		if(s){
-			sleept(s);
+			sleepck(s);
 			draw((mi - 10) / 300, max((ma + 290) / 300, 1));
 		}
 		la2 += s;

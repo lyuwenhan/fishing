@@ -24,7 +24,7 @@
 #define fi_eaten "鱼\033[m, 因饥饿已食用"
 #define fi_price "鱼\033[m, 价值$"
 #define fi_inaqua "是否放入水族馆"
-#define fi_shi "屏幕高度需至少为19行"
+#define fi_shi "屏幕高度需至少为20行"
 #define fi_sw "屏幕宽度需至少为51列"
 #define fi_sn "当前为 "
 #define fi_hi " 行"
@@ -87,6 +87,8 @@
 #define fi_fish(big, type) ((type) + (big))
 #define fi_status "当前状态: "
 #define fi_statuses {"抛竿中", "等待中", "鱼正在靠近", "收杆中", "已脱钩"}
+#define fi_si "按 e 键退出简洁模式"
+#define fi_nsi "按 e 键进入简洁模式"
 #define press_enter_continue "(按Enter继续)"
 #define fun_choose {"请选择开局技能", "1.美味诱饵, 2.稀世珍宝, 3.牢靠安全绳, 4.强效清洁剂, 5.大力水手, 6.放长线钓大鱼, 7.孤苦人家", "美味诱饵:", "    上钩速度变为原先的1.5倍", "稀世珍宝:", "    鱼的价格变为原先的2倍", "牢靠安全绳:", "    脱钩概率由50%变为10%", "强效清洁剂:", "    初始获得1个清洁剂, 并且清洁剂效果翻倍", "大力水手:", "    甩杆倍速由1倍变为2倍", "放长线钓大鱼:", "    大鱼概率由20%变为40%", "孤苦人家:", "    无"}
 #define fun_schoose "请选择输出速度"
