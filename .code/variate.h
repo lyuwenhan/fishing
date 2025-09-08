@@ -57,5 +57,6 @@ namespace variate{
 	//[0,40]
 	int hungry = 20;
 	string pwd;
+	bool simple = false;
 }
 #endif

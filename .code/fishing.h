@@ -189,10 +189,9 @@ namespace fishing{
 	int lmi = 0;
 	int lma = 0;
 	int lst = 0;
-	bool simple = false;
 	bool swp = false;
 	inline void draw(int mi = 0, int ma = 0){
-		simple = (simple != swp);
+		variate::simple = (variate::simple != swp);
 		bool wcg = false, wcgd = false;
 		const int now = time(0);
 		while(now - la > 10){
@@ -253,15 +252,15 @@ namespace fishing{
 			ter_big = nowsize;
 			need_cl = true;
 		}
-		if(simple || size_ok1 || size_ok2){
+		if(variate::simple || size_ok1 || size_ok2){
 			if(need_cl){
 				cout << "\033c\033[?25l" << flush;
-			}else if(simple || wcg){
+			}else if(variate::simple || wcg){
 				cout << "\033[H" << flush;
 			}else{
 				return;
 			}
-			if(!simple){
+			if(!variate::simple){
 				if(size_ok1){
 					cout << fi_shi << endl;
 					cout << fi_sn << nowsize.second << fi_hi << endl;
@@ -312,7 +311,7 @@ namespace fishing{
 				cout << fi_wait << ": < " << ma / 2. << " min" << endl;
 			}
 		}
-		cout << (simple ? fi_si : fi_nsi) << endl;
+		cout << (variate::simple ? fi_si : fi_nsi) << endl;
 		swp = false;
 	}
 	void sleepck(double s){
