@@ -149,9 +149,8 @@ namespace parkour{
 				swcnt = 0;
 				cout << pk_tip1 << endl;
 				show();
-				char c;
 				bool u = false, di = false;
-				while((c = getch2())){
+				for(char c : getch2s()){
 					if(c == 127){
 						return;
 					}
@@ -266,9 +265,8 @@ namespace parkour{
 				show();
 				swcnt++;
 				swcnt %= 5;
-				char c;
 				bool u = false, d = false, l = false, r = false, di = false;
-				while((c = getch2())){
+				for(char c : getch2s()){
 					if(c == 127){
 						return;
 					}

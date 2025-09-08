@@ -63,6 +63,18 @@ inline char getch2(){
 	fcntl(STDIN_FILENO, F_SETFL, flags);
 	return c;
 }
+inline string getch2s(){
+	int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
+	fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
+	cin.clear();
+	cout.flush();
+	string s;
+	while(cin.peek() != EOF){
+		s.push_back(getch());
+	}
+	fcntl(STDIN_FILENO, F_SETFL, flags);
+	return s;
+}
 bool issymbol(char type){
 	string symbols = "({[<`~!@#$%^&*-_ +=|;:.?>]})\"'\\/";
 	size_t found = symbols.find(type);
@@ -140,16 +152,17 @@ inline string getlineYe(string &ans, int b = 0){
 	return ans;
 }
 inline void sleept(double time){
-	while(getch2());
 	while(time > 0.1){
-		while(getch2());
-		cout.flush();
+		getch2s();
 		time -= 0.1;
 		usleep(100000);
 	}
-	while(getch2());
+	getch2s();
 	usleep(1000000 * time);
-	while(getch2());
+	getch2s();
+}
+inline void sleeptne(double time){
+	usleep(1000000 * time);
 }
 inline void sleep2(double time){
 	usleep(1000000 * time);
