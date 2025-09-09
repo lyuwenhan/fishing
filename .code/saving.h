@@ -1,6 +1,8 @@
 #ifndef saving_defined
 #define saving_defined
 #include<random>
+#include<vector>
+#include<queue>
 #include"lib/sha256.h"
 extern "C" {
 	#include"lib/aes.c"
@@ -49,12 +51,11 @@ namespace saving{
 		return key;
 	}
 
-	bool encryptFile(const std::string &filepath, const std::string &password, const std::string &content) {
+	bool encryptFile(const std::string &filepath, const std::string &password, std::vector<uint8_t> data) {
 		std::vector<uint8_t> salt = generateRandomBytes(SALT_SIZE);
 		std::vector<uint8_t> iv = generateRandomBytes(IV_SIZE);
 		std::vector<uint8_t> key = sha256KeyFromPasswordWithSalt(password, salt);
 
-		std::vector<uint8_t> data(content.begin(), content.end());
 		size_t pad = 16 - (data.size() % 16);
 		data.insert(data.end(), pad, 0x0B);
 
@@ -70,20 +71,20 @@ namespace saving{
 		return true;
 	}
 
-	std::string decryptFile(const std::string &filepath, const std::string &password) {
+	std::vector<uint8_t> decryptFile(const std::string &filepath, const std::string &password) {
 		std::ifstream in(filepath, std::ios::binary);
-		if (!in) return "";
+		if (!in) return std::vector<uint8_t>();;
 
 		uint8_t iv[IV_SIZE];
 		in.read(reinterpret_cast<char*>(iv), IV_SIZE);
-		if (in.gcount() != IV_SIZE) return "";
+		if (in.gcount() != IV_SIZE) return std::vector<uint8_t>();;
 
 		std::vector<uint8_t> salt(SALT_SIZE);
 		in.read(reinterpret_cast<char*>(salt.data()), SALT_SIZE);
-		if (in.gcount() != SALT_SIZE) return "";
+		if (in.gcount() != SALT_SIZE) return std::vector<uint8_t>();;
 
 		std::vector<uint8_t> ciphertext((std::istreambuf_iterator<char>(in)), {});
-		if (ciphertext.size() % 16 != 0) return "";
+		if (ciphertext.size() % 16 != 0) return std::vector<uint8_t>();;
 
 		std::vector<uint8_t> key = sha256KeyFromPasswordWithSalt(password, salt);
 
@@ -95,7 +96,7 @@ namespace saving{
 			ciphertext.pop_back();
 		}
 
-		return std::string(ciphertext.begin(), ciphertext.end());
+		return ciphertext;
 	}
 }
 #endif

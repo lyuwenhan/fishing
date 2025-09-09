@@ -10,7 +10,7 @@ namespace spin{
 	void spin(){
 		clear();
 		print(sp_1);
-		print(sp_2 + to_string(variate::cnt) + sp_3 + to_string(variate::money));
+		print(sp_2 + to_string(variate::data_saver.cnt) + sp_3 + to_string(variate::data_saver.money));
 		print(sp_4);
 		print(sp_5);
 		print(sp_6);
@@ -18,24 +18,24 @@ namespace spin{
 			while(true){
 				char c = getch();
 				if(c == '1'){
-					if(variate::cnt < 100 && variate::money < 1000){
+					if(variate::data_saver.cnt < 100 && variate::data_saver.money < 1000){
 						print(sp_7);
 						sleept(1);
 						break;
 					}
-					if(variate::cnt < 100){
+					if(variate::data_saver.cnt < 100){
 						print(sp_8);
 						sleept(1);
 						break;
 					}
-					if(variate::money < 1000){
+					if(variate::data_saver.money < 1000){
 						print(sp_9);
 						sleept(1);
 						break;
 					}
 
-					variate::cnt -= 100;
-					variate::money -= 1000;
+					variate::data_saver.cnt -= 100;
+					variate::data_saver.money -= 1000;
 					int ran = random(1, 100);
 					if(ran <= 20){
 						print(sp_10);
@@ -59,7 +59,7 @@ namespace spin{
 			}
 			clear();
 			cout << sp_1 << endl;
-			cout << sp_2 << variate::cnt << sp_3 << variate::money << endl;
+			cout << sp_2 << variate::data_saver.cnt << sp_3 << variate::data_saver.money << endl;
 			cout << sp_4 << endl;
 			cout << sp_5 << endl;
 			cout << sp_6 << endl;

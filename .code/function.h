@@ -166,7 +166,7 @@ inline void sleep2(double time){
 }
 inline void printnl(string s, double time = 0.02, bool eat = true){
 	cout << "\033[?25l" << flush;
-	if(variate::speed >= 3){
+	if(variate::data_saver.speed >= 3){
 		cout << s;
 	}else{
 		#ifdef EN
@@ -181,9 +181,9 @@ inline void printnl(string s, double time = 0.02, bool eat = true){
 			if(to){
 				cout << ch << flush;
 				if(eat){
-					sleept(time * ch.length() / variate::speed);
+					sleept(time * ch.length() / variate::data_saver.speed);
 				}else{
-					sleep2(time * ch.length() / variate::speed);
+					sleep2(time * ch.length() / variate::data_saver.speed);
 				}
 			}else{
 				cout << ch;
@@ -192,9 +192,9 @@ inline void printnl(string s, double time = 0.02, bool eat = true){
 			#else
 			cout << ch << flush;
 			if(eat){
-				sleept(time * ch.length() / variate::speed);
+				sleept(time * ch.length() / variate::data_saver.speed);
 			}else{
-				sleep2(time * ch.length() / variate::speed);
+				sleep2(time * ch.length() / variate::data_saver.speed);
 			}
 			#endif
 		}
@@ -229,20 +229,20 @@ inline int random(int l, int r){
 inline void choose(){
 	clear();
 	cout << fun_schoose << endl << st_speeds << endl;
-	variate::speed = 1;
+	variate::data_saver.speed = 1;
 	print(fun_s1);
 	printa("test test test test test test test test test test test test test");
-	variate::speed = 2;
+	variate::data_saver.speed = 2;
 	print(fun_s2);
 	printa("test test test test test test test test test test test test test");
-	variate::speed = 3;
+	variate::data_saver.speed = 3;
 	print(fun_s3);
 	print("test test test test test test test test test test test test test");
-	variate::speed = 2;
+	variate::data_saver.speed = 2;
 	while(true){
 		char c = getch();
 		if(c >= '1' && c <= '3'){
-			variate::speed = c - '0';
+			variate::data_saver.speed = c - '0';
 			break;
 		}
 	}
@@ -253,23 +253,23 @@ inline void choose(){
 	while(true){
 		char c = getch();
 		if(c == '1'){
-			variate::level = 5;
+			variate::data_saver.level = 5;
 			break;
 		}else if(c == '2'){
-			variate::get_level = 5;
+			variate::data_saver.get_level = 5;
 			break;
 		}else if(c == '3'){
-			variate::slip = 10;
+			variate::data_saver.slip = 10;
 			break;
 		}else if(c == '4'){
-			variate::cleaning_ball = 1;
-			variate::cleaning_sub = 2;
+			variate::data_saver.cleaning_ball = 1;
+			variate::data_saver.cleaning_sub = 2;
 			break;
 		}else if(c == '5'){
-			variate::stime = 2;
+			variate::data_saver.stime = 2;
 			break;
 		}else if(c == '6'){
-			variate::bf = 40;
+			variate::data_saver.bf = 40;
 			break;
 		}else if(c == '7'){
 			break;

@@ -48,9 +48,9 @@ int main(){
 				spin::spin();
 				break;
 			}else if(type == '5'){
-				if(variate::try_level == 0){
+				if(variate::data_saver.try_level == 0){
 					parkour::main();
-				}else if(variate::try_level == 1){
+				}else if(variate::data_saver.try_level == 1){
 					beat::main();
 				}else{
 					clear();

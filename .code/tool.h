@@ -16,7 +16,7 @@ namespace tool{
 		clear();
 		if(s == "鱼竿"){
 			const int l = 0, r = 6;
-			int a = variate::gan;
+			int a = variate::data_saver.gan;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -36,7 +36,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::gan = a;
+						variate::data_saver.gan = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -47,7 +47,7 @@ namespace tool{
 			}
 		}else if(s == "金币数量"){
 			const int l = 0, r = 1000000;
-			int a = variate::money;
+			int a = variate::data_saver.money;
 			if(a <= 10){
 			}else if(a <= 100){
 				a /= 10;
@@ -105,7 +105,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::money = a;
+						variate::data_saver.money = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -116,7 +116,7 @@ namespace tool{
 			}
 		}else if(s == "水族馆容量"){
 			const int l = 0, r = 30;
-			int a = variate::aqcnt;
+			int a = variate::data_saver.aqcnt;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -136,11 +136,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqcnt = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqcnt = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -152,7 +152,7 @@ namespace tool{
 			}
 		}else if(s == "钓鱼数量"){
 			const int l = 0, r = 1000000;
-			int a = variate::cnt;
+			int a = variate::data_saver.cnt;
 			if(a <= 10){
 			}else if(a <= 100){
 				a /= 10;
@@ -210,7 +210,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::cnt = a;
+						variate::data_saver.cnt = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -220,8 +220,8 @@ namespace tool{
 				}
 			}
 		}else if(s == "腐烂的鱼数量 (水族馆)"){
-			const int l = 0, r = variate::aqcnt;
-			int a = variate::aqfish_cnt[0];
+			const int l = 0, r = variate::data_saver.aqcnt;
+			int a = variate::data_saver.aqfish_cnt[0];
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -241,11 +241,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqfish_cnt[0] = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqfish_cnt[0] = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -256,8 +256,8 @@ namespace tool{
 				}
 			}
 		}else if(s == "普通的鱼数量 (水族馆)"){
-			const int l = 0, r = variate::aqcnt;
-			int a = variate::aqfish_cnt[1];
+			const int l = 0, r = variate::data_saver.aqcnt;
+			int a = variate::data_saver.aqfish_cnt[1];
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -277,11 +277,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqfish_cnt[1] = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqfish_cnt[1] = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -292,8 +292,8 @@ namespace tool{
 				}
 			}
 		}else if(s == "紫水晶鱼数量 (水族馆)"){
-			const int l = 0, r = variate::aqcnt;
-			int a = variate::aqfish_cnt[2];
+			const int l = 0, r = variate::data_saver.aqcnt;
+			int a = variate::data_saver.aqfish_cnt[2];
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -313,11 +313,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqfish_cnt[2] = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqfish_cnt[2] = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -328,8 +328,8 @@ namespace tool{
 				}
 			}
 		}else if(s == "青金石鱼数量 (水族馆)"){
-			const int l = 0, r = variate::aqcnt;
-			int a = variate::aqfish_cnt[3];
+			const int l = 0, r = variate::data_saver.aqcnt;
+			int a = variate::data_saver.aqfish_cnt[3];
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -349,11 +349,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqfish_cnt[3] = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqfish_cnt[3] = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -364,8 +364,8 @@ namespace tool{
 				}
 			}
 		}else if(s == "金鱼数量 (水族馆)"){
-			const int l = 0, r = variate::aqcnt;
-			int a = variate::aqfish_cnt[4];
+			const int l = 0, r = variate::data_saver.aqcnt;
+			int a = variate::data_saver.aqfish_cnt[4];
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -385,11 +385,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqfish_cnt[4] = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqfish_cnt[4] = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -400,8 +400,8 @@ namespace tool{
 				}
 			}
 		}else if(s == "绿宝石鱼数量 (水族馆)"){
-			const int l = 0, r = variate::aqcnt;
-			int a = variate::aqfish_cnt[5];
+			const int l = 0, r = variate::data_saver.aqcnt;
+			int a = variate::data_saver.aqfish_cnt[5];
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -421,11 +421,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqfish_cnt[5] = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqfish_cnt[5] = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -436,8 +436,8 @@ namespace tool{
 				}
 			}
 		}else if(s == "钻石鱼数量 (水族馆)"){
-			const int l = 0, r = variate::aqcnt;
-			int a = variate::aqfish_cnt[6];
+			const int l = 0, r = variate::data_saver.aqcnt;
+			int a = variate::data_saver.aqfish_cnt[6];
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -457,11 +457,11 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::aqfish_cnt[6] = a;
-						int cnt = variate::aqcnt;
+						variate::data_saver.aqfish_cnt[6] = a;
+						int cnt = variate::data_saver.aqcnt;
 						for(int i = 6; i >= 0; i--){
-							variate::aqfish_cnt[i] = min(variate::aqfish_cnt[i], cnt);
-							cnt -= variate::aqfish_cnt[i];
+							variate::data_saver.aqfish_cnt[i] = min(variate::data_saver.aqfish_cnt[i], cnt);
+							cnt -= variate::data_saver.aqfish_cnt[i];
 						}
 						clear();
 						return;
@@ -473,7 +473,7 @@ namespace tool{
 			}
 		}else if(s == "上钩速度"){
 			const int l = 0, r = variate::max_level;
-			int a = variate::level;
+			int a = variate::data_saver.level;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -493,7 +493,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::level = a;
+						variate::data_saver.level = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -504,7 +504,7 @@ namespace tool{
 			}
 		}else if(s == "钓鱼收益"){
 			const int l = 0, r = variate::max_level2;
-			int a = variate::get_level;
+			int a = variate::data_saver.get_level;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -524,7 +524,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::get_level = a;
+						variate::data_saver.get_level = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -535,7 +535,7 @@ namespace tool{
 			}
 		}else if(s == "脱钩概率"){
 			const int l = 90, r = 0;
-			int a = variate::slip;
+			int a = variate::data_saver.slip;
 			while(true){
 				clear();
 				cout << "按 a 增加, d 减少, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -562,7 +562,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::slip = a;
+						variate::data_saver.slip = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -573,7 +573,7 @@ namespace tool{
 			}
 		}else if(s == "清洁剂数量"){
 			const int l = 0, r = 100;
-			int a = variate::cleaning_ball;
+			int a = variate::data_saver.cleaning_ball;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -593,7 +593,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::cleaning_ball = a;
+						variate::data_saver.cleaning_ball = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -604,7 +604,7 @@ namespace tool{
 			}
 		}else if(s == "清洁剂效果"){
 			const int l = 1, r = 10;
-			int a = variate::cleaning_sub;
+			int a = variate::data_saver.cleaning_sub;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -624,7 +624,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::cleaning_sub = a;
+						variate::data_saver.cleaning_sub = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -635,7 +635,7 @@ namespace tool{
 			}
 		}else if(s == "甩杆倍速"){
 			const int l = 1, r = 10;
-			int a = variate::stime;
+			int a = variate::data_saver.stime;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -655,7 +655,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::stime = a;
+						variate::data_saver.stime = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -666,7 +666,7 @@ namespace tool{
 			}
 		}else if(s == "大鱼概率"){
 			const int l = 0, r = 100;
-			int a = variate::bf;
+			int a = variate::data_saver.bf;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -686,7 +686,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::bf = a;
+						variate::data_saver.bf = a;
 						clear();
 						return;
 					}else if(c == 127){
@@ -780,7 +780,7 @@ namespace tool{
 			}
 		}else if(s == "饱食度"){
 			const int l = 0, r = 40;
-			int a = variate::hungry;
+			int a = variate::data_saver.hungry;
 			while(true){
 				clear();
 				cout << "按 a 减少, d 增加, 按 enter 保存, 按 backspace 退出" << endl << s << ':' << endl;
@@ -800,7 +800,7 @@ namespace tool{
 						}
 						break;
 					}else if(c == '\r'){
-						variate::hungry = a;
+						variate::data_saver.hungry = a;
 						clear();
 						return;
 					}else if(c == 127){

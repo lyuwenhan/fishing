@@ -3,8 +3,14 @@
 #include<iostream>
 #include<fstream>
 #include<sstream>
+#include<cstring>
 #include<string>
+#include<vector>
+#include<queue>
+using std::min;
 using std::cout;
+using std::queue;
+using std::vector;
 using std::string;
 using std::ifstream;
 using std::ofstream;
@@ -27,21 +33,22 @@ namespace checkpoint{
 		}
 		return true;
 	}
-	inline string de(){
-		ostringstream s;
-		s << to_string(variate::money) << ' ' << to_string(variate::level) << ' ' << to_string(variate::get_level) << ' ' << to_string(variate::cnt) << ' ' << to_string(variate::bf) << ' ' << to_string(variate::stime) << ' ' << to_string(variate::slip) << ' ' << to_string(variate::cleaning_ball) << ' ' << to_string(variate::cleaning_sub) << ' ' << to_string(variate::gan) << ' ' << to_string(variate::aqcnt) << ' ' << to_string(variate::try_level) << ' ' << to_string(variate::speed) << ' ' << to_string(variate::roast) << ' ' << to_string(variate::hungry);
-		for(int i = 0; i <= 6; i++){
-			s << ' ' << to_string(variate::aqfish_cnt[i]);
+
+	bool cmp(const std::vector<uint8_t>& v1, const std::vector<uint8_t>& v2){
+		if(v1.size() != v2.size()){
+			return false;
 		}
-		for(int i = 0; i < 2; i++){
-			for(int j = 0; j < 7; j++){
-				s << ' ' << to_string(variate::fish[j][i]);
+		for(int i = 0; i < v1.size(); i++){
+			if(v1[i] != v2[i]){
+				return false;
 			}
 		}
-		return s.str();
+		return true;
 	}
+
 	namespace decode_code{
-		inline bool decode1(string s){
+		inline bool decode1(const vector<uint8_t> s0){
+			std::string s(s0.begin(), s0.end());
 			long long coin, c;
 			int lv, lv2, bf, st, sl, clean, gan, aqc, aqs[7], clesb, ty, sp, fi[7][2], ro, hung;
 			istringstream str(s);
@@ -77,33 +84,44 @@ namespace checkpoint{
 			if(sp < 1){
 				sp = 1;
 			}
-			variate::money = coin;
-			variate::level = lv;
-			variate::get_level = lv2;
-			variate::cnt = c;
-			variate::bf = bf;
-			variate::stime = st;
-			variate::slip = sl;
-			variate::cleaning_ball = clean;
-			variate::cleaning_sub = clesb;
-			variate::gan = gan;
-			variate::aqcnt = aqc;
-			variate::try_level = ty;
-			variate::speed = sp;
-			variate::roast = ro;
-			variate::hungry = hung;
+			variate::data_saver.money = coin;
+			variate::data_saver.level = lv;
+			variate::data_saver.get_level = lv2;
+			variate::data_saver.cnt = c;
+			variate::data_saver.bf = bf;
+			variate::data_saver.stime = st;
+			variate::data_saver.slip = sl;
+			variate::data_saver.cleaning_ball = clean;
+			variate::data_saver.cleaning_sub = clesb;
+			variate::data_saver.gan = gan;
+			variate::data_saver.aqcnt = aqc;
+			variate::data_saver.try_level = ty;
+			variate::data_saver.speed = sp;
+			variate::data_saver.roast = ro;
+			variate::data_saver.hungry = hung;
 			for(int i = 0; i <= 6; i++){
-				variate::aqfish_cnt[i] = aqs[i];
+				variate::data_saver.aqfish_cnt[i] = aqs[i];
 			}
 			for(int i = 0; i < 2; i++){
 				for(int j = 0; j < 7; j++){
-					variate::fish[j][i] = fi[j][i];
+					variate::data_saver.fish[j][i] = fi[j][i];
 				}
 			}
 			return true;
 		}
-		inline bool decode(string code){
-			if(decode1(code)){
+		
+		inline bool decode2(const vector<uint8_t>& s){
+			variate::svariate temp(s);
+			if(temp.money < 0 || temp.level < 0 || temp.level > variate::max_level || temp.get_level < 0 || temp.get_level > variate::max_level2 || temp.cnt < 0 || temp.bf <= 0 || temp.bf > 100 || temp.bf <= 0 ||
+			temp.stime < 1 || temp.stime > 100 || temp.slip < 0 || temp.slip > 100 || temp.cleaning_ball < 0 || temp.cleaning_sub < 1 || temp.gan < 0 || temp.gan > 6 || temp.aqcnt < 0 || temp.try_level < 0 || temp.roast < 0 || temp.hungry < 0){
+				return false;
+			}
+			const vector<uint8_t> v = temp;
+			variate::data_saver.set(v);
+			return cmp(v, variate::data_saver.get());
+		}
+		inline bool decode(vector<uint8_t> code){
+			if(decode1(code) || decode2(code)){
 				cout << chp_suc << endl;
 				return true;
 			}else{
@@ -113,7 +131,7 @@ namespace checkpoint{
 	}
 	using decode_code::decode;
 	inline void savechpnp(string name){
-		saving::encryptFile("checkpoint/" + name, variate::pwd, de());
+		saving::encryptFile("checkpoint/" + name, variate::pwd, variate::data_saver.get());
 	}
 	inline bool login(){
 		string name, pwd;

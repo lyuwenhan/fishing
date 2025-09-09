@@ -12,7 +12,7 @@ namespace setting{
 	void setting(){
 		clear();
 		print(st_m);
-		print(st_m2 + st_output_speed[(variate::speed < 1 ? 1 : (variate::speed > 3 ? 3 : variate::speed))]);
+		print(st_m2 + st_output_speed[(variate::data_saver.speed < 1 ? 1 : (variate::data_saver.speed > 3 ? 3 : variate::data_saver.speed))]);
 		while(true){
 			char c = getch();
 			if(c == '1'){
@@ -22,7 +22,7 @@ namespace setting{
 				while(c < '1' || c > '3'){
 					c = getch();
 				}
-				variate::speed = c - '0';
+				variate::data_saver.speed = c - '0';
 				break;
 			}else if(c == '2'){
 				break;

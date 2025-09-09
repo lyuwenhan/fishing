@@ -122,7 +122,7 @@ namespace parkour{
 		}
 	}
 	inline void main(){
-		if(variate::try_level != 0){
+		if(variate::data_saver.try_level != 0){
 			printa(m_did);
 			return;
 		}
@@ -165,8 +165,8 @@ namespace parkour{
 				if(fin(x, y - 1)){
 					clear();
 					printa(pk_ok);
-					variate::money += 500;
-					variate::try_level = 1;
+					variate::data_saver.money += 500;
+					variate::data_saver.try_level = 1;
 					return;
 				}
 				if(die()){
