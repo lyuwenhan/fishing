@@ -5,8 +5,8 @@
 #include<vector>
 using std::cout;
 using std::min;
-#include "variate.h"
-#include "checkpoint.h"
+#include"variate.h"
+#include"checkpoint.h"
 namespace tool{
 	struct type1{
 		string name;
