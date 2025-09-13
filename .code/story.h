@@ -4,9 +4,11 @@
 #include"function.h"
 inline void story(){
 	clear();
+	clearc();
 	for(string i : vector<string>(story_m)){
 		printa(i);
 	}
 	clear();
+	clearc();
 }
 #endif
