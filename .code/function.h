@@ -3,6 +3,7 @@
 #include<hashtable.h>
 #include<iostream>
 #include<string>
+#include<queue>
 #include<sys/stat.h>
 #include<sys/ioctl.h>
 #include<fcntl.h>
@@ -13,6 +14,7 @@ using std::cin;
 using std::cout;
 using std::hash;
 using std::flush;
+using std::queue;
 using std::string;
 using std::ostream;
 using std::to_string;
@@ -41,7 +43,9 @@ inline void clear(){
 ostream& endl(ostream& out) {
 	return out << "\r\n" << flush;
 }
-inline char getch(){
+
+queue<char> input;
+inline char getcharc(){
 	char c = getchar();
 	if(c == 3){
 		clear();
@@ -50,31 +54,49 @@ inline char getch(){
 	}
 	return c;
 }
-inline char getch2(){
+inline void clearc(){
+	getcharc();
+	while(!input.empty()){
+		input.pop();
+	}
+}
+inline void readallin(){
 	int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
 	fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
 	cin.clear();
 	cout.flush();
-	if(cin.peek() == EOF){
-		fcntl(STDIN_FILENO, F_SETFL, flags);
+	while(cin.peek() != EOF){
+		input.push(getcharc());
+	}
+	fcntl(STDIN_FILENO, F_SETFL, flags);
+}
+inline char getch(){
+	readallin();
+	if(input.empty()){
+		return getcharc();
+	}
+	char c = input.front();
+	input.pop();
+	return c;
+}
+inline char getch2(){
+	readallin();
+	if(input.empty()){
 		return 0;
 	}
-	char c = getch();
-	fcntl(STDIN_FILENO, F_SETFL, flags);
+	char c = input.front();
+	input.pop();
 	return c;
 }
 inline string getch2s(){
-	int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
-	fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
-	cin.clear();
-	cout.flush();
 	string s;
-	while(cin.peek() != EOF){
-		s.push_back(getch());
+	while(!input.empty()){
+		s.push_back(input.front());
+		input.pop();
 	}
-	fcntl(STDIN_FILENO, F_SETFL, flags);
 	return s;
 }
+
 bool issymbol(char type){
 	string symbols = "({[<`~!@#$%^&*-_ +=|;:.?>]})\"'\\/";
 	size_t found = symbols.find(type);
@@ -151,18 +173,18 @@ inline string getlineYe(string &ans, int b = 0){
 	cout << endl;
 	return ans;
 }
-inline void sleept(double time){
-	while(time > 0.1){
-		getch2s();
-		time -= 0.1;
-		usleep(100000);
-	}
-	getch2s();
-	usleep(1000000 * time);
-	getch2s();
-}
 inline void sleep2(double time){
 	usleep(1000000 * time);
+}
+inline void sleept(double time){
+	while(time > 0.1){
+		readallin();
+		time -= 0.1;
+		sleep2(0.1);
+	}
+	readallin();
+	sleep2(time);
+	readallin();
 }
 inline void printnl(string s, double time = 0.02, bool eat = true){
 	cout << "\033[?25l" << flush;
