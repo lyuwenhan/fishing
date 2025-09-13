@@ -54,12 +54,6 @@ inline char getcharc(){
 	}
 	return c;
 }
-inline void clearc(){
-	getcharc();
-	while(!input.empty()){
-		input.pop();
-	}
-}
 inline void readallin(){
 	int flags = fcntl(STDIN_FILENO, F_GETFL, 0);
 	fcntl(STDIN_FILENO, F_SETFL, flags | O_NONBLOCK);
@@ -95,6 +89,12 @@ inline string getch2s(){
 		input.pop();
 	}
 	return s;
+}
+inline void clearc(){
+	readallin();
+	while(!input.empty()){
+		input.pop();
+	}
 }
 
 bool issymbol(char type){
@@ -250,6 +250,7 @@ inline int random(int l, int r){
 }
 inline void choose(){
 	clear();
+	clearc();
 	cout << fun_schoose << endl << st_speeds << endl;
 	variate::data_saver.speed = 1;
 	print(fun_s1);
