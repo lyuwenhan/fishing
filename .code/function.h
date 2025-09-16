@@ -186,7 +186,7 @@ inline void sleept(double time){
 	sleep2(time);
 	readallin();
 }
-inline void printnl(string s, double time = 0.02, bool eat = true){
+inline void printnl(string s, double time = 0.02){
 	cout << "\033[?25l" << flush;
 	if(variate::data_saver.speed >= 3){
 		cout << s;
@@ -202,36 +202,25 @@ inline void printnl(string s, double time = 0.02, bool eat = true){
 			#ifdef EN
 			if(to){
 				cout << ch << flush;
-				if(eat){
-					sleept(time * ch.length() / variate::data_saver.speed);
-				}else{
-					sleep2(time * ch.length() / variate::data_saver.speed);
-				}
+				sleept(time * ch.length() / variate::data_saver.speed);
 			}else{
 				cout << ch;
 			}
 			to = !to;
 			#else
 			cout << ch << flush;
-			if(eat){
-				sleept(time * ch.length() / variate::data_saver.speed);
-			}else{
-				sleep2(time * ch.length() / variate::data_saver.speed);
-			}
+			sleept(time * ch.length() / variate::data_saver.speed);
 			#endif
 		}
 	}
 	cout << "\033[m\033[?25h" << flush;
 }
 inline void printnlne(string s, double time = 0.02){
-	printnl(s, time, false);
+	printnl(s, time);
 }
-inline void print(string s, double time = 0.02, bool eat = true){
-	printnl(s, time, eat);
+inline void print(string s, double time = 0.02){
+	printnl(s, time);
 	cout << endl;
-}
-inline void printne(string s, double time = 0.02){
-	printnl(s, time, false);
 }
 inline void printa(string s = "", double time = 0.02){
 	print(s + (s.empty() ? "" : "    ") + press_enter_continue, time);
