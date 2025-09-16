@@ -192,19 +192,15 @@ inline void printnl(string s, double time = 0.02){
 	if(variate::data_saver.speed >= 3){
 		cout << s;
 	}else{
-		int cnt = 0;
 		auto it = s.begin();
 		while(it != s.end()){
 			auto p = it;
-			utf8::next(it, s.end());
-			string ch(p, it);
-			if(++cnt >= cntm){
-				cnt = 0;
-				cout << ch << flush;
-				sleept(time * ch.length() / variate::data_saver.speed);
-			}else{
-				cout << ch;
+			for(int i = 1; it != s.end() && i <= cntm; i++){
+				utf8::next(it, s.end());
 			}
+			string ch(p, it);
+			cout << ch << flush;
+			sleept(time * ch.length() / variate::data_saver.speed);
 		}
 	}
 	cout << "\033[m\033[?25h" << flush;
