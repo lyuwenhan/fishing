@@ -175,4 +175,5 @@
 #define sp_15 "谢谢惠顾"
 #define to_1 "这里不是你该来的地方"
 #define to_2 "请按下回车以退出"
+#define fi_cntm 1
 #endif

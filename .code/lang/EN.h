@@ -175,4 +175,5 @@
 #define sp_15 "Better luck next time!"
 #define to_1 "This is not the right place"
 #define to_2 "Please press enter to exit"
+#define fi_cntm 2
 #endif

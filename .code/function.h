@@ -186,31 +186,25 @@ inline void sleept(double time){
 	sleep2(time);
 	readallin();
 }
+const int cntm = fi_cntm;
 inline void printnl(string s, double time = 0.02){
 	cout << "\033[?25l" << flush;
 	if(variate::data_saver.speed >= 3){
 		cout << s;
 	}else{
-		#ifdef EN
-		bool to = false;
-		#endif
+		int cnt = 0;
 		auto it = s.begin();
 		while(it != s.end()){
 			auto p = it;
 			utf8::next(it, s.end());
 			string ch(p, it);
-			#ifdef EN
-			if(to){
+			if(++cnt >= cntm){
+				cnt = 0;
 				cout << ch << flush;
 				sleept(time * ch.length() / variate::data_saver.speed);
 			}else{
 				cout << ch;
 			}
-			to = !to;
-			#else
-			cout << ch << flush;
-			sleept(time * ch.length() / variate::data_saver.speed);
-			#endif
 		}
 	}
 	cout << "\033[m\033[?25h" << flush;
