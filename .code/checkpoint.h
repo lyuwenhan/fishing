@@ -112,8 +112,7 @@ namespace checkpoint{
 		
 		inline bool decode2(const vector<uint8_t>& s){
 			variate::svariate temp(s);
-			if(temp.money < 0 || temp.level < 0 || temp.level > variate::max_level || temp.get_level < 0 || temp.get_level > variate::max_level2 || temp.cnt < 0 || temp.bf <= 0 || temp.bf > 100 || temp.bf <= 0 ||
-			temp.stime < 1 || temp.stime > 100 || temp.slip < 0 || temp.slip > 100 || temp.cleaning_ball < 0 || temp.cleaning_sub < 1 || temp.gan < 0 || temp.gan > 6 || temp.aqcnt < 0 || temp.try_level < 0 || temp.roast < 0 || temp.hungry < 0){
+			if(temp.money < 0 || temp.level < 0 || temp.level > variate::max_level || temp.get_level < 0 || temp.get_level > variate::max_level2 || temp.cnt < 0 || temp.bf < 0 || temp.bf > 100 || temp.stime < 1 || temp.stime > 10 || temp.slip < 0 || temp.slip > 100 || temp.cleaning_ball < 0 || temp.cleaning_sub < 1 || temp.gan < 0 || temp.gan > 6 || temp.aqcnt < 0 || temp.try_level < 0 || temp.roast < 0 || temp.hungry < 0){
 				return false;
 			}
 			const vector<uint8_t> v = temp;
