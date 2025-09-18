@@ -83,6 +83,7 @@ inline char getch2(){
 	return c;
 }
 inline string getch2s(){
+	readallin();
 	string s;
 	while(!input.empty()){
 		s.push_back(input.front());
