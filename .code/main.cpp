@@ -7,7 +7,6 @@
 #include"fishing.h"
 #include"shop.h"
 #include"checkpoint.h"
-#include"setting.h"
 #include"function.h"
 #include"story.h"
 #include"error.h"
@@ -42,7 +41,7 @@ int main(){
 				shop::shop();
 				break;
 			}else if(type == '3'){
-				setting::setting();
+				setsp();
 				break;
 			}else if(type == '4'){
 				spin::spin();

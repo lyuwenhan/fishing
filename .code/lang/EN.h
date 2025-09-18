@@ -2,7 +2,7 @@
 #define LANG_ANY
 #define LANG_EN
 #define LANG EN
-#define m_main "1.Start fishing, 2.Enter shop, 3.Setting, 4.Lucky Draw, 5.Challenging, 6.Exit."
+#define m_main "1.Start fishing, 2.Enter shop, 3.Edit output speed, 4.Lucky Draw, 5.Challenging, 6.Exit."
 #define m_did "Challenge Completed"
 #define chp_suc "Load succeeded"
 #define chp_nouser "Incorrect username or password"
@@ -95,10 +95,10 @@
 #define fun_s1 "This is Slow Mode"
 #define fun_s2 "This is Normal Mode"
 #define fun_s3 "This is Fast Mode"
-#define st_speed {"", "Slow Mode", "Normal Mode", "Fast Mode"}
-#define st_speeds "1.Slow Mode, 2.Normal Mode, 3.Fast Mode"
-#define st_m "1.Edit output speed, 2.Exit"
-#define st_m2 "Current output speed: "
+#define fun_speed {"", "Slow Mode", "Normal Mode", "Fast Mode"}
+#define fun_speeds "1.Slow Mode, 2.Normal Mode, 3.Fast Mode"
+#define fun_m "1.Edit output speed, 2.Exit"
+#define fun_m2 "Current output speed: "
 #define pk_in "Do you want to enter parkour mode?"
 #define pk_tip1 "Use 'W' or Space to jump, press 'R' to respawn, press Backspace to exit."
 #define pk_ok "You have completed the challenge and earned $500!"

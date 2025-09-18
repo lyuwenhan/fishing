@@ -206,9 +206,6 @@ inline void printnl(string s, double time = 0.02){
 	}
 	cout << "\033[m\033[?25h" << flush;
 }
-inline void printnlne(string s, double time = 0.02){
-	printnl(s, time);
-}
 inline void print(string s, double time = 0.02){
 	printnl(s, time);
 	cout << endl;
@@ -231,7 +228,7 @@ inline int random(int l, int r){
 inline void choose(){
 	clear();
 	clearc();
-	cout << fun_schoose << endl << st_speeds << endl;
+	cout << fun_schoose << endl << fun_speeds << endl;
 	variate::data_saver.speed = 1;
 	print(fun_s1);
 	printa("test test test test test test test test test test test test test");
@@ -275,6 +272,27 @@ inline void choose(){
 			variate::data_saver.bf = 40;
 			break;
 		}else if(c == '7'){
+			break;
+		}
+	}
+}
+const string output_speed[4] = fun_speed;
+void setsp(){
+	clear();
+	print(fun_m);
+	print(fun_m2 + output_speed[(variate::data_saver.speed < 1 ? 1 : (variate::data_saver.speed > 3 ? 3 : variate::data_saver.speed))]);
+	while(true){
+		char c = getch();
+		if(c == '1'){
+			clear();
+			print(fun_speeds);
+			char c = getch();
+			while(c < '1' || c > '3'){
+				c = getch();
+			}
+			variate::data_saver.speed = c - '0';
+			break;
+		}else if(c == '2'){
 			break;
 		}
 	}

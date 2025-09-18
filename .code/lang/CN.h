@@ -2,7 +2,7 @@
 #define LANG_ANY
 #define LANG_ZH
 #define LANG ZH
-#define m_main "1.开始钓鱼, 2.进入商店, 3.设置, 4.抽奖, 5.挑战, 6.退出, 其他输入无效。"
+#define m_main "1.开始钓鱼, 2.进入商店, 3.更改输出速度, 4.抽奖, 5.挑战, 6.退出, 其他输入无效。"
 #define m_did "已完成挑战"
 #define chp_suc "读取成功"
 #define chp_nouser "用户名或密码错误"
@@ -95,10 +95,10 @@
 #define fun_s1 "这个是慢速"
 #define fun_s2 "这个是普通速度"
 #define fun_s3 "这个是急速"
-#define st_speed {"", "慢速", "普通", "急速"}
-#define st_speeds "1.慢速, 2.普通, 3.急速"
-#define st_m "1.更改输出速度, 2.退出"
-#define st_m2 "当前输出速度: "
+#define fun_speed {"", "慢速", "普通", "急速"}
+#define fun_speeds "1.慢速, 2.普通, 3.急速"
+#define fun_m "1.更改输出速度, 2.退出"
+#define fun_m2 "当前输出速度: "
 #define pk_in "是否进入跑酷"
 #define pk_tip1 "使用w或空格进行跳跃, 按r重生, 按backspace退出"
 #define pk_ok "完成挑战, 获得 $500"
