@@ -86,7 +86,7 @@ namespace variate{
 		int get_level = 0;
 		//[0,]
 		long long cnt = 0;
-		//(0,100]
+		//[0,100]
 		int bf = 20;
 		//[1,10]
 		int stime = 1;
